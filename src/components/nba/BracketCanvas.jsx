@@ -71,12 +71,22 @@ function boxY(centerY) {
 // ---------------------------------------------------------------------------
 // TeamRow
 // ---------------------------------------------------------------------------
-function TeamRow({ team, prob, isChamp }) {
+function TeamRow({ team, prob, isChamp, probMode, champProb }) {
   if (!team) return null;
   const primary = team.color_primary ?? '#1a3a5c';
   const pillBg = `linear-gradient(90deg, ${primary} 0%, ${primary}cc 55%, ${primary}55 85%, transparent 100%)`;
   const logoBg = `${primary}66`;
   const url = logoUrl(team.abbreviation);
+
+  // Mirrors Python html_renderer.py team_node_html prob_mode logic
+  let probLabel;
+  if (probMode === 'Championship %' && champProb != null) {
+    probLabel = isChamp
+      ? `🏆 ${Math.round(champProb * 100)}%`
+      : `${Math.round(champProb * 100)}%`;
+  } else {
+    probLabel = `${Math.round(prob * 100)}%`;
+  }
 
   return (
     <div className={`team-node${isChamp ? ' champion' : ''}`}>
@@ -94,7 +104,7 @@ function TeamRow({ team, prob, isChamp }) {
           }}
         />
       </div>
-      <span className="team-prob">{Math.round(prob * 100)}%</span>
+      <span className="team-prob">{probLabel}</span>
     </div>
   );
 }
@@ -102,7 +112,7 @@ function TeamRow({ team, prob, isChamp }) {
 // ---------------------------------------------------------------------------
 // MatchupBox
 // ---------------------------------------------------------------------------
-function MatchupBox({ matchup, teams, champAbbrev, scale = 1 }) {
+function MatchupBox({ matchup, teams, champAbbrev, scale = 1, probMode, champProbs }) {
   const topTeam = teams[matchup.top_team];
   const botTeam = teams[matchup.bottom_team];
   const topProb = matchup.top_win_prob;
@@ -115,8 +125,20 @@ function MatchupBox({ matchup, teams, champAbbrev, scale = 1 }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 3, ...style }}>
-      <TeamRow team={topTeam} prob={topProb} isChamp={matchup.top_team === champAbbrev} />
-      <TeamRow team={botTeam} prob={botProb} isChamp={matchup.bottom_team === champAbbrev} />
+      <TeamRow
+        team={topTeam}
+        prob={topProb}
+        isChamp={matchup.top_team === champAbbrev}
+        probMode={probMode}
+        champProb={champProbs?.[matchup.top_team]}
+      />
+      <TeamRow
+        team={botTeam}
+        prob={botProb}
+        isChamp={matchup.bottom_team === champAbbrev}
+        probMode={probMode}
+        champProb={champProbs?.[matchup.bottom_team]}
+      />
     </div>
   );
 }
@@ -261,11 +283,12 @@ function ConnectorLines({ r1Y, r2Y, cfY, finalsY }) {
 // ---------------------------------------------------------------------------
 // BracketCanvas (main export)
 // ---------------------------------------------------------------------------
-export default function BracketCanvas({ data }) {
+export default function BracketCanvas({ data, probMode = 'Matchup Win %' }) {
   const { bracket, teams } = data;
+  const champProbs = data.championship_probs;
 
   // Predicted champion = team with highest championship probability
-  const champAbbrev = Object.entries(data.championship_probs).sort(
+  const champAbbrev = Object.entries(champProbs).sort(
     (a, b) => b[1] - a[1]
   )[0]?.[0];
 
@@ -338,6 +361,8 @@ export default function BracketCanvas({ data }) {
             teams={teams}
             champAbbrev={champAbbrev}
             scale={scale}
+            probMode={probMode}
+            champProbs={champProbs}
           />
         </div>
       ))}
