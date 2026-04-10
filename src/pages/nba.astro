@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import NBADashboard from '../components/nba/NBADashboard.jsx';
+---
+
+<Base
+  title="NBA Championship Model 2025"
+  description="50,000-simulation Monte Carlo bracket predictions for the 2025 NBA playoffs. Logistic regression model trained on 2000–2024 playoff data."
+  ogImage="/og-nba.png"
+>
+  <Nav />
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+    <NBADashboard client:load />
+  </main>
+</Base>

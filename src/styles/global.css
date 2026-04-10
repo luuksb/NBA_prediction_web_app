@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body {
+    @apply bg-court-bg text-white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  /* ── Bracket team row ─────────────────────────────────────────────────── */
+  .team-node {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    background: #1e2a45;
+    border-radius: 8px;
+    min-height: 36px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 0.15s;
+  }
+
+  .team-node:hover {
+    box-shadow: 0 2px 12px rgba(90, 180, 255, 0.22);
+  }
+
+  .team-node.champion {
+    box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.32);
+    outline: 1px solid #ffd700;
+  }
+
+  .team-pill {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .team-seed-badge {
+    width: 18px;
+    min-width: 18px;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(0, 0, 0, 0.28);
+    flex-shrink: 0;
+  }
+
+  .team-abbrev {
+    font-size: 10px;
+    font-weight: 800;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0 4px 0 5px;
+  }
+
+  .team-logo-area {
+    width: 30px;
+    min-width: 30px;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .team-logo {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+  }
+
+  .team-prob {
+    font-size: 10px;
+    font-weight: 700;
+    color: #8fa3c1;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-self: center;
+    padding: 0 5px;
+    min-width: 28px;
+    text-align: right;
+  }
+
+  .team-node.champion .team-prob {
+    color: #ffd700;
+  }
+}
