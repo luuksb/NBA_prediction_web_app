@@ -12,12 +12,11 @@ import BracketCanvas from './BracketCanvas.jsx';
 import ProbabilityChart from './ProbabilityChart.jsx';
 import UpsetPanel from './UpsetPanel.jsx';
 
-// ---------------------------------------------------------------------------
-// Actual champions lookup (mirrors Python ui_layout.py _overrides dict)
-// ---------------------------------------------------------------------------
-const ACTUAL_CHAMPIONS = {
-  1980: 'LAL', 1981: 'BOS', 1982: 'LAL', 1983: 'PHI',
-  2025: 'OKC',
+// Window display labels
+const WINDOW_LABELS = {
+  full:   'Full',
+  modern: 'Modern',
+  recent: 'Recent',
 };
 
 // ---------------------------------------------------------------------------
@@ -73,17 +72,23 @@ function ErrorMessage({ message }) {
 // Left panel sub-components
 // ---------------------------------------------------------------------------
 
-/** Styled input-like field that displays a static value (mirrors Streamlit st.text_input). */
-function ConfigField({ label, value }) {
+/** Styled select dropdown that matches the sidebar dark theme. */
+function SelectField({ label, value, options, onChange }) {
   return (
     <div className="mb-3">
       <p className="text-court-text text-xs mb-1">{label}</p>
-      <div
-        className="w-full rounded-md px-3 py-1.5 text-sm text-white border border-court-border"
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full rounded-md px-3 py-1.5 text-sm text-white border border-court-border cursor-pointer focus:outline-none focus:border-court-accent"
         style={{ background: '#0d1829' }}
       >
-        {value}
-      </div>
+        {options.map((opt) => (
+          <option key={opt.value} value={opt.value} style={{ background: '#0d1829' }}>
+            {opt.label}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }
@@ -176,22 +181,55 @@ function SectionTitle({ children }) {
 // NBADashboard
 // ---------------------------------------------------------------------------
 export default function NBADashboard() {
-  const [data, setData] = useState(null);
+  const [index, setIndex]               = useState(null);
+  const [selectedYear, setSelectedYear] = useState(2025);
+  const [selectedWindow, setSelectedWindow] = useState('modern');
+  const [data, setData]   = useState(null);
   const [error, setError] = useState(null);
   const [probMode, setProbMode] = useState('Matchup Win %');
 
+  // Load run index once on mount
   useEffect(() => {
-    fetch('/data/nba_results.json')
+    fetch('/data/index.json')
+      .then((r) => r.json())
+      .then(setIndex)
+      .catch((e) => console.warn('Failed to load index:', e));
+  }, []);
+
+  // Fetch season data whenever year or window changes
+  useEffect(() => {
+    setData(null);
+    setError(null);
+    fetch(`/data/seasons/${selectedYear}_${selectedWindow}.json`)
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         return r.json();
       })
       .then(setData)
       .catch((e) => setError(e.message));
-  }, []);
+  }, [selectedYear, selectedWindow]);
+
+  // Derive available years and windows from the index
+  const availableYears = index
+    ? [...new Set(index.runs.map((r) => r.year))].sort((a, b) => b - a)
+    : [2025];
+
+  const windowsForYear = index
+    ? index.runs.filter((r) => r.year === selectedYear).map((r) => r.window)
+    : ['full', 'modern', 'recent'];
+
+  // If current window isn't available for the newly-selected year, reset to first available
+  const handleYearChange = (yr) => {
+    const y = Number(yr);
+    const wins = index
+      ? index.runs.filter((r) => r.year === y).map((r) => r.window)
+      : ['full', 'modern', 'recent'];
+    setSelectedYear(y);
+    if (!wins.includes(selectedWindow)) setSelectedWindow(wins[0] ?? 'modern');
+  };
 
   if (error) return <ErrorMessage message={error} />;
-  if (!data) return <LoadingSpinner />;
+  if (!data)  return <LoadingSpinner />;
 
   const m = data.metadata;
   const season = m.season;
@@ -201,12 +239,13 @@ export default function NBADashboard() {
     (a, b) => b[1] - a[1]
   )[0]?.[0] ?? '—';
 
-  const actualChamp = ACTUAL_CHAMPIONS[season] ?? '—';
+  // Use actual_champion from the data file; fall back to index lookup
+  const actualChamp =
+    data.actual_champion ??
+    (index?.runs.find((r) => r.year === season && r.window === selectedWindow)?.actual_champion) ??
+    '—';
 
-  // Short window label — first word of training_window, capitalised
-  const windowShort =
-    (m.training_window ?? '').split(/[\s(]/)[0].charAt(0).toUpperCase() +
-    (m.training_window ?? '').split(/[\s(]/)[0].slice(1);
+  const windowShort = WINDOW_LABELS[selectedWindow] ?? selectedWindow;
 
   const simsLabel = m.n_simulations
     ? `${Math.round(m.n_simulations / 1000)}k`
@@ -223,8 +262,18 @@ export default function NBADashboard() {
       >
         {/* Configuration */}
         <SidebarHeader>Configuration</SidebarHeader>
-        <ConfigField label="Year" value={String(season)} />
-        <ConfigField label="Window" value={m.training_window ?? '—'} />
+        <SelectField
+          label="Year"
+          value={selectedYear}
+          options={availableYears.map((y) => ({ value: y, label: String(y) }))}
+          onChange={handleYearChange}
+        />
+        <SelectField
+          label="Training Window"
+          value={selectedWindow}
+          options={windowsForYear.map((w) => ({ value: w, label: WINDOW_LABELS[w] ?? w }))}
+          onChange={setSelectedWindow}
+        />
 
         {/* Model Specification */}
         <SidebarHeader>Model Specification</SidebarHeader>
