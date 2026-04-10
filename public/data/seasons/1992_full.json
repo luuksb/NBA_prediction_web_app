@@ -1,0 +1,309 @@
+{
+  "metadata": {
+    "season": 1992,
+    "generated_at": "2026-04-10T22:10:35.284368+00:00",
+    "n_simulations": 50000,
+    "training_window": "full (1980\u20132024)",
+    "features": [
+      "delta_bpm_avail_sum",
+      "delta_playoff_series_wins",
+      "delta_ts_percent"
+    ],
+    "coefficients": {
+      "delta_bpm_avail_sum": 0.07386025832191853,
+      "delta_playoff_series_wins": 0.0071119237582352056,
+      "delta_ts_percent": 12.266175864091624
+    },
+    "intercept": 1.148215003704729,
+    "pseudo_r2": 0.0705,
+    "auc": 0.6834,
+    "brier_score": 0.1431
+  },
+  "actual_champion": "CHI",
+  "teams": {
+    "CHI": {
+      "name": "Chicago Bulls",
+      "abbreviation": "CHI",
+      "conference": "East",
+      "seed": 1,
+      "color_primary": "#CE1141",
+      "color_secondary": "#000000"
+    },
+    "BOS": {
+      "name": "Boston Celtics",
+      "abbreviation": "BOS",
+      "conference": "East",
+      "seed": 2,
+      "color_primary": "#007A33",
+      "color_secondary": "#BA9653"
+    },
+    "NYK": {
+      "name": "New York Knicks",
+      "abbreviation": "NYK",
+      "conference": "East",
+      "seed": 3,
+      "color_primary": "#006BB6",
+      "color_secondary": "#F58426"
+    },
+    "CLE": {
+      "name": "Cleveland Cavaliers",
+      "abbreviation": "CLE",
+      "conference": "East",
+      "seed": 4,
+      "color_primary": "#860038",
+      "color_secondary": "#FDBB30"
+    },
+    "DET": {
+      "name": "Detroit Pistons",
+      "abbreviation": "DET",
+      "conference": "East",
+      "seed": 5,
+      "color_primary": "#C8102E",
+      "color_secondary": "#1D428A"
+    },
+    "IND": {
+      "name": "Indiana Pacers",
+      "abbreviation": "IND",
+      "conference": "East",
+      "seed": 6,
+      "color_primary": "#002D62",
+      "color_secondary": "#FDBB30"
+    },
+    "NJN": {
+      "name": "New Jersey Nets",
+      "abbreviation": "NJN",
+      "conference": "East",
+      "seed": 7,
+      "color_primary": "#1a3a5c",
+      "color_secondary": "#0a1929"
+    },
+    "ATL": {
+      "name": "Atlanta Hawks",
+      "abbreviation": "ATL",
+      "conference": "East",
+      "seed": 8,
+      "color_primary": "#E03A3E",
+      "color_secondary": "#C1D32F"
+    },
+    "POR": {
+      "name": "Portland Trail Blazers",
+      "abbreviation": "POR",
+      "conference": "West",
+      "seed": 1,
+      "color_primary": "#E03A3E",
+      "color_secondary": "#000000"
+    },
+    "GSW": {
+      "name": "Golden State Warriors",
+      "abbreviation": "GSW",
+      "conference": "West",
+      "seed": 2,
+      "color_primary": "#1D428A",
+      "color_secondary": "#FFC72C"
+    },
+    "UTA": {
+      "name": "Utah Jazz",
+      "abbreviation": "UTA",
+      "conference": "West",
+      "seed": 3,
+      "color_primary": "#002B5C",
+      "color_secondary": "#00471B"
+    },
+    "PHO": {
+      "name": "Phoenix Suns",
+      "abbreviation": "PHO",
+      "conference": "West",
+      "seed": 4,
+      "color_primary": "#1a3a5c",
+      "color_secondary": "#0a1929"
+    },
+    "SAS": {
+      "name": "San Antonio Spurs",
+      "abbreviation": "SAS",
+      "conference": "West",
+      "seed": 5,
+      "color_primary": "#C4CED4",
+      "color_secondary": "#000000"
+    },
+    "SEA": {
+      "name": "Seattle SuperSonics",
+      "abbreviation": "SEA",
+      "conference": "West",
+      "seed": 6,
+      "color_primary": "#1a3a5c",
+      "color_secondary": "#0a1929"
+    },
+    "LAC": {
+      "name": "Los Angeles Clippers",
+      "abbreviation": "LAC",
+      "conference": "West",
+      "seed": 7,
+      "color_primary": "#C8102E",
+      "color_secondary": "#1D428A"
+    },
+    "LAL": {
+      "name": "Los Angeles Lakers",
+      "abbreviation": "LAL",
+      "conference": "West",
+      "seed": 8,
+      "color_primary": "#552583",
+      "color_secondary": "#FDB927"
+    }
+  },
+  "bracket": {
+    "West": {
+      "R1": [
+        {
+          "matchup_id": "W_R1_1",
+          "top_team": "POR",
+          "bottom_team": "LAL",
+          "top_seed": 1,
+          "bottom_seed": 8,
+          "top_win_prob": 0.8855
+        },
+        {
+          "matchup_id": "W_R1_2",
+          "top_team": "GSW",
+          "bottom_team": "LAC",
+          "top_seed": 2,
+          "bottom_seed": 7,
+          "top_win_prob": 0.8468
+        },
+        {
+          "matchup_id": "W_R1_3",
+          "top_team": "UTA",
+          "bottom_team": "SEA",
+          "top_seed": 3,
+          "bottom_seed": 6,
+          "top_win_prob": 0.8894
+        },
+        {
+          "matchup_id": "W_R1_4",
+          "top_team": "PHO",
+          "bottom_team": "SAS",
+          "top_seed": 4,
+          "bottom_seed": 5,
+          "top_win_prob": 0.8235
+        }
+      ],
+      "R2": [
+        {
+          "matchup_id": "W_R2_1",
+          "top_team": "POR",
+          "bottom_team": "PHO",
+          "top_seed": 1,
+          "bottom_seed": 4,
+          "top_win_prob": 0.7759
+        },
+        {
+          "matchup_id": "W_R2_2",
+          "top_team": "GSW",
+          "bottom_team": "UTA",
+          "top_seed": 2,
+          "bottom_seed": 3,
+          "top_win_prob": 0.7323
+        }
+      ],
+      "CF": [
+        {
+          "matchup_id": "W_CF",
+          "top_team": "POR",
+          "bottom_team": "GSW",
+          "top_seed": 1,
+          "bottom_seed": 2,
+          "top_win_prob": 0.8333
+        }
+      ]
+    },
+    "East": {
+      "R1": [
+        {
+          "matchup_id": "E_R1_1",
+          "top_team": "CHI",
+          "bottom_team": "ATL",
+          "top_seed": 1,
+          "bottom_seed": 8,
+          "top_win_prob": 0.5
+        },
+        {
+          "matchup_id": "E_R1_2",
+          "top_team": "BOS",
+          "bottom_team": "NJN",
+          "top_seed": 2,
+          "bottom_seed": 7,
+          "top_win_prob": 0.9255
+        },
+        {
+          "matchup_id": "E_R1_3",
+          "top_team": "NYK",
+          "bottom_team": "IND",
+          "top_seed": 3,
+          "bottom_seed": 6,
+          "top_win_prob": 0.7053
+        },
+        {
+          "matchup_id": "E_R1_4",
+          "top_team": "CLE",
+          "bottom_team": "DET",
+          "top_seed": 4,
+          "bottom_seed": 5,
+          "top_win_prob": 0.8767
+        }
+      ],
+      "R2": [
+        {
+          "matchup_id": "E_R2_1",
+          "top_team": "CHI",
+          "bottom_team": "CLE",
+          "top_seed": 1,
+          "bottom_seed": 4,
+          "top_win_prob": 0.8912
+        },
+        {
+          "matchup_id": "E_R2_2",
+          "top_team": "BOS",
+          "bottom_team": "NYK",
+          "top_seed": 2,
+          "bottom_seed": 3,
+          "top_win_prob": 0.8371
+        }
+      ],
+      "CF": [
+        {
+          "matchup_id": "E_CF",
+          "top_team": "CHI",
+          "bottom_team": "BOS",
+          "top_seed": 1,
+          "bottom_seed": 2,
+          "top_win_prob": 0.903
+        }
+      ]
+    },
+    "Finals": {
+      "matchup_id": "Finals",
+      "top_team": "CHI",
+      "bottom_team": "POR",
+      "top_seed": 1,
+      "bottom_seed": 1,
+      "top_win_prob": 0.8791
+    }
+  },
+  "championship_probs": {
+    "CHI": 0.7331,
+    "POR": 0.13958,
+    "GSW": 0.04144,
+    "BOS": 0.04036,
+    "UTA": 0.01664,
+    "PHO": 0.01196,
+    "CLE": 0.0097,
+    "NYK": 0.00398,
+    "SAS": 0.0014,
+    "IND": 0.00128,
+    "DET": 0.00018,
+    "LAL": 0.00016,
+    "SEA": 0.00012,
+    "LAC": 0.0001,
+    "NJN": 0.0,
+    "ATL": 0.0
+  }
+}

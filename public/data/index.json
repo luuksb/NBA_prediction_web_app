@@ -1,0 +1,1058 @@
+{
+  "generated_at": "2026-04-10T22:13:51.284573+00:00",
+  "runs": [
+    {
+      "run_id": "1987_full",
+      "year": 1987,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "LAL",
+      "actual_champion": "LAL",
+      "file": "seasons/1987_full.json"
+    },
+    {
+      "run_id": "1987_modern",
+      "year": 1987,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "LAL",
+      "actual_champion": "LAL",
+      "file": "seasons/1987_modern.json"
+    },
+    {
+      "run_id": "1987_recent",
+      "year": 1987,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "LAL",
+      "actual_champion": null,
+      "file": "seasons/1987_recent.json"
+    },
+    {
+      "run_id": "1988_full",
+      "year": 1988,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "LAL",
+      "actual_champion": "LAL",
+      "file": "seasons/1988_full.json"
+    },
+    {
+      "run_id": "1988_modern",
+      "year": 1988,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "LAL",
+      "actual_champion": "LAL",
+      "file": "seasons/1988_modern.json"
+    },
+    {
+      "run_id": "1988_recent",
+      "year": 1988,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "BOS",
+      "actual_champion": null,
+      "file": "seasons/1988_recent.json"
+    },
+    {
+      "run_id": "1989_full",
+      "year": 1989,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "LAL",
+      "actual_champion": "DET",
+      "file": "seasons/1989_full.json"
+    },
+    {
+      "run_id": "1989_modern",
+      "year": 1989,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "LAL",
+      "actual_champion": "DET",
+      "file": "seasons/1989_modern.json"
+    },
+    {
+      "run_id": "1989_recent",
+      "year": 1989,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "LAL",
+      "actual_champion": null,
+      "file": "seasons/1989_recent.json"
+    },
+    {
+      "run_id": "1990_full",
+      "year": 1990,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "LAL",
+      "actual_champion": "DET",
+      "file": "seasons/1990_full.json"
+    },
+    {
+      "run_id": "1990_modern",
+      "year": 1990,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "LAL",
+      "actual_champion": "DET",
+      "file": "seasons/1990_modern.json"
+    },
+    {
+      "run_id": "1990_recent",
+      "year": 1990,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "LAL",
+      "actual_champion": null,
+      "file": "seasons/1990_recent.json"
+    },
+    {
+      "run_id": "1991_full",
+      "year": 1991,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "POR",
+      "actual_champion": "CHI",
+      "file": "seasons/1991_full.json"
+    },
+    {
+      "run_id": "1991_modern",
+      "year": 1991,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "POR",
+      "actual_champion": "CHI",
+      "file": "seasons/1991_modern.json"
+    },
+    {
+      "run_id": "1991_recent",
+      "year": 1991,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "CHI",
+      "actual_champion": null,
+      "file": "seasons/1991_recent.json"
+    },
+    {
+      "run_id": "1992_full",
+      "year": 1992,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "CHI",
+      "actual_champion": "CHI",
+      "file": "seasons/1992_full.json"
+    },
+    {
+      "run_id": "1992_modern",
+      "year": 1992,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "CHI",
+      "actual_champion": "CHI",
+      "file": "seasons/1992_modern.json"
+    },
+    {
+      "run_id": "1992_recent",
+      "year": 1992,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "CHI",
+      "actual_champion": null,
+      "file": "seasons/1992_recent.json"
+    },
+    {
+      "run_id": "1993_full",
+      "year": 1993,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "PHO",
+      "actual_champion": "CHI",
+      "file": "seasons/1993_full.json"
+    },
+    {
+      "run_id": "1993_modern",
+      "year": 1993,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "PHO",
+      "actual_champion": "CHI",
+      "file": "seasons/1993_modern.json"
+    },
+    {
+      "run_id": "1993_recent",
+      "year": 1993,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "PHO",
+      "actual_champion": null,
+      "file": "seasons/1993_recent.json"
+    },
+    {
+      "run_id": "1994_full",
+      "year": 1994,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "SEA",
+      "actual_champion": "HOU",
+      "file": "seasons/1994_full.json"
+    },
+    {
+      "run_id": "1994_modern",
+      "year": 1994,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "SEA",
+      "actual_champion": "HOU",
+      "file": "seasons/1994_modern.json"
+    },
+    {
+      "run_id": "1994_recent",
+      "year": 1994,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "SEA",
+      "actual_champion": null,
+      "file": "seasons/1994_recent.json"
+    },
+    {
+      "run_id": "1995_full",
+      "year": 1995,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": "HOU",
+      "file": "seasons/1995_full.json"
+    },
+    {
+      "run_id": "1995_modern",
+      "year": 1995,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "ORL",
+      "actual_champion": "HOU",
+      "file": "seasons/1995_modern.json"
+    },
+    {
+      "run_id": "1995_recent",
+      "year": 1995,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "ORL",
+      "actual_champion": null,
+      "file": "seasons/1995_recent.json"
+    },
+    {
+      "run_id": "1996_full",
+      "year": 1996,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "CHI",
+      "actual_champion": "CHI",
+      "file": "seasons/1996_full.json"
+    },
+    {
+      "run_id": "1996_modern",
+      "year": 1996,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "CHI",
+      "actual_champion": "CHI",
+      "file": "seasons/1996_modern.json"
+    },
+    {
+      "run_id": "1996_recent",
+      "year": 1996,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "CHI",
+      "actual_champion": null,
+      "file": "seasons/1996_recent.json"
+    },
+    {
+      "run_id": "1997_full",
+      "year": 1997,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "CHI",
+      "actual_champion": "CHI",
+      "file": "seasons/1997_full.json"
+    },
+    {
+      "run_id": "1997_modern",
+      "year": 1997,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "CHI",
+      "actual_champion": "CHI",
+      "file": "seasons/1997_modern.json"
+    },
+    {
+      "run_id": "1997_recent",
+      "year": 1997,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "CHI",
+      "actual_champion": null,
+      "file": "seasons/1997_recent.json"
+    },
+    {
+      "run_id": "1998_full",
+      "year": 1998,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "CHI",
+      "actual_champion": "CHI",
+      "file": "seasons/1998_full.json"
+    },
+    {
+      "run_id": "1998_modern",
+      "year": 1998,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "CHI",
+      "actual_champion": "CHI",
+      "file": "seasons/1998_modern.json"
+    },
+    {
+      "run_id": "1998_recent",
+      "year": 1998,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "UTA",
+      "actual_champion": null,
+      "file": "seasons/1998_recent.json"
+    },
+    {
+      "run_id": "1999_full",
+      "year": 1999,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "UTA",
+      "actual_champion": "SAS",
+      "file": "seasons/1999_full.json"
+    },
+    {
+      "run_id": "1999_modern",
+      "year": 1999,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "UTA",
+      "actual_champion": "SAS",
+      "file": "seasons/1999_modern.json"
+    },
+    {
+      "run_id": "1999_recent",
+      "year": 1999,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "UTA",
+      "actual_champion": null,
+      "file": "seasons/1999_recent.json"
+    },
+    {
+      "run_id": "2000_full",
+      "year": 2000,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "LAL",
+      "actual_champion": "LAL",
+      "file": "seasons/2000_full.json"
+    },
+    {
+      "run_id": "2000_modern",
+      "year": 2000,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "LAL",
+      "actual_champion": "LAL",
+      "file": "seasons/2000_modern.json"
+    },
+    {
+      "run_id": "2000_recent",
+      "year": 2000,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "UTA",
+      "actual_champion": null,
+      "file": "seasons/2000_recent.json"
+    },
+    {
+      "run_id": "2001_full",
+      "year": 2001,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": "LAL",
+      "file": "seasons/2001_full.json"
+    },
+    {
+      "run_id": "2001_modern",
+      "year": 2001,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": "LAL",
+      "file": "seasons/2001_modern.json"
+    },
+    {
+      "run_id": "2001_recent",
+      "year": 2001,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": null,
+      "file": "seasons/2001_recent.json"
+    },
+    {
+      "run_id": "2002_full",
+      "year": 2002,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "SAC",
+      "actual_champion": "LAL",
+      "file": "seasons/2002_full.json"
+    },
+    {
+      "run_id": "2002_modern",
+      "year": 2002,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "SAC",
+      "actual_champion": "LAL",
+      "file": "seasons/2002_modern.json"
+    },
+    {
+      "run_id": "2002_recent",
+      "year": 2002,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "LAL",
+      "actual_champion": null,
+      "file": "seasons/2002_recent.json"
+    },
+    {
+      "run_id": "2003_full",
+      "year": 2003,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": "SAS",
+      "file": "seasons/2003_full.json"
+    },
+    {
+      "run_id": "2003_modern",
+      "year": 2003,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": "SAS",
+      "file": "seasons/2003_modern.json"
+    },
+    {
+      "run_id": "2003_recent",
+      "year": 2003,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": null,
+      "file": "seasons/2003_recent.json"
+    },
+    {
+      "run_id": "2004_full",
+      "year": 2004,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "MIN",
+      "actual_champion": "DET",
+      "file": "seasons/2004_full.json"
+    },
+    {
+      "run_id": "2004_modern",
+      "year": 2004,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "MIN",
+      "actual_champion": "DET",
+      "file": "seasons/2004_modern.json"
+    },
+    {
+      "run_id": "2004_recent",
+      "year": 2004,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "MIN",
+      "actual_champion": null,
+      "file": "seasons/2004_recent.json"
+    },
+    {
+      "run_id": "2005_full",
+      "year": 2005,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "PHO",
+      "actual_champion": "SAS",
+      "file": "seasons/2005_full.json"
+    },
+    {
+      "run_id": "2005_modern",
+      "year": 2005,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "PHO",
+      "actual_champion": "SAS",
+      "file": "seasons/2005_modern.json"
+    },
+    {
+      "run_id": "2005_recent",
+      "year": 2005,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "PHO",
+      "actual_champion": null,
+      "file": "seasons/2005_recent.json"
+    },
+    {
+      "run_id": "2006_full",
+      "year": 2006,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": "MIA",
+      "file": "seasons/2006_full.json"
+    },
+    {
+      "run_id": "2006_modern",
+      "year": 2006,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": "MIA",
+      "file": "seasons/2006_modern.json"
+    },
+    {
+      "run_id": "2006_recent",
+      "year": 2006,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": null,
+      "file": "seasons/2006_recent.json"
+    },
+    {
+      "run_id": "2007_full",
+      "year": 2007,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "DAL",
+      "actual_champion": "SAS",
+      "file": "seasons/2007_full.json"
+    },
+    {
+      "run_id": "2007_modern",
+      "year": 2007,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "DAL",
+      "actual_champion": "SAS",
+      "file": "seasons/2007_modern.json"
+    },
+    {
+      "run_id": "2007_recent",
+      "year": 2007,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "DAL",
+      "actual_champion": null,
+      "file": "seasons/2007_recent.json"
+    },
+    {
+      "run_id": "2008_full",
+      "year": 2008,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "BOS",
+      "actual_champion": "BOS",
+      "file": "seasons/2008_full.json"
+    },
+    {
+      "run_id": "2008_modern",
+      "year": 2008,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "BOS",
+      "actual_champion": "BOS",
+      "file": "seasons/2008_modern.json"
+    },
+    {
+      "run_id": "2008_recent",
+      "year": 2008,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "BOS",
+      "actual_champion": null,
+      "file": "seasons/2008_recent.json"
+    },
+    {
+      "run_id": "2009_full",
+      "year": 2009,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "CLE",
+      "actual_champion": "LAL",
+      "file": "seasons/2009_full.json"
+    },
+    {
+      "run_id": "2009_modern",
+      "year": 2009,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "CLE",
+      "actual_champion": "LAL",
+      "file": "seasons/2009_modern.json"
+    },
+    {
+      "run_id": "2009_recent",
+      "year": 2009,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "CLE",
+      "actual_champion": null,
+      "file": "seasons/2009_recent.json"
+    },
+    {
+      "run_id": "2010_full",
+      "year": 2010,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "CLE",
+      "actual_champion": "LAL",
+      "file": "seasons/2010_full.json"
+    },
+    {
+      "run_id": "2010_modern",
+      "year": 2010,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "CLE",
+      "actual_champion": "LAL",
+      "file": "seasons/2010_modern.json"
+    },
+    {
+      "run_id": "2010_recent",
+      "year": 2010,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "CLE",
+      "actual_champion": null,
+      "file": "seasons/2010_recent.json"
+    },
+    {
+      "run_id": "2011_full",
+      "year": 2011,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": "DAL",
+      "file": "seasons/2011_full.json"
+    },
+    {
+      "run_id": "2011_modern",
+      "year": 2011,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": "DAL",
+      "file": "seasons/2011_modern.json"
+    },
+    {
+      "run_id": "2011_recent",
+      "year": 2011,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": null,
+      "file": "seasons/2011_recent.json"
+    },
+    {
+      "run_id": "2012_full",
+      "year": 2012,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": "MIA",
+      "file": "seasons/2012_full.json"
+    },
+    {
+      "run_id": "2012_modern",
+      "year": 2012,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": "MIA",
+      "file": "seasons/2012_modern.json"
+    },
+    {
+      "run_id": "2012_recent",
+      "year": 2012,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": null,
+      "file": "seasons/2012_recent.json"
+    },
+    {
+      "run_id": "2013_full",
+      "year": 2013,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "MIA",
+      "actual_champion": "MIA",
+      "file": "seasons/2013_full.json"
+    },
+    {
+      "run_id": "2013_modern",
+      "year": 2013,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "MIA",
+      "actual_champion": "MIA",
+      "file": "seasons/2013_modern.json"
+    },
+    {
+      "run_id": "2013_recent",
+      "year": 2013,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "MIA",
+      "actual_champion": null,
+      "file": "seasons/2013_recent.json"
+    },
+    {
+      "run_id": "2014_full",
+      "year": 2014,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "SAS",
+      "actual_champion": "SAS",
+      "file": "seasons/2014_full.json"
+    },
+    {
+      "run_id": "2014_modern",
+      "year": 2014,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "MIA",
+      "actual_champion": "SAS",
+      "file": "seasons/2014_modern.json"
+    },
+    {
+      "run_id": "2014_recent",
+      "year": 2014,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "MIA",
+      "actual_champion": null,
+      "file": "seasons/2014_recent.json"
+    },
+    {
+      "run_id": "2015_full",
+      "year": 2015,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "GSW",
+      "actual_champion": "GSW",
+      "file": "seasons/2015_full.json"
+    },
+    {
+      "run_id": "2015_modern",
+      "year": 2015,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "GSW",
+      "actual_champion": "GSW",
+      "file": "seasons/2015_modern.json"
+    },
+    {
+      "run_id": "2015_recent",
+      "year": 2015,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "GSW",
+      "actual_champion": null,
+      "file": "seasons/2015_recent.json"
+    },
+    {
+      "run_id": "2016_full",
+      "year": 2016,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "GSW",
+      "actual_champion": "CLE",
+      "file": "seasons/2016_full.json"
+    },
+    {
+      "run_id": "2016_modern",
+      "year": 2016,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "GSW",
+      "actual_champion": "CLE",
+      "file": "seasons/2016_modern.json"
+    },
+    {
+      "run_id": "2016_recent",
+      "year": 2016,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "GSW",
+      "actual_champion": null,
+      "file": "seasons/2016_recent.json"
+    },
+    {
+      "run_id": "2017_full",
+      "year": 2017,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "GSW",
+      "actual_champion": "GSW",
+      "file": "seasons/2017_full.json"
+    },
+    {
+      "run_id": "2017_modern",
+      "year": 2017,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "GSW",
+      "actual_champion": "GSW",
+      "file": "seasons/2017_modern.json"
+    },
+    {
+      "run_id": "2017_recent",
+      "year": 2017,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "GSW",
+      "actual_champion": null,
+      "file": "seasons/2017_recent.json"
+    },
+    {
+      "run_id": "2018_full",
+      "year": 2018,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "HOU",
+      "actual_champion": "GSW",
+      "file": "seasons/2018_full.json"
+    },
+    {
+      "run_id": "2018_modern",
+      "year": 2018,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "HOU",
+      "actual_champion": "GSW",
+      "file": "seasons/2018_modern.json"
+    },
+    {
+      "run_id": "2018_recent",
+      "year": 2018,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "HOU",
+      "actual_champion": null,
+      "file": "seasons/2018_recent.json"
+    },
+    {
+      "run_id": "2019_full",
+      "year": 2019,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "GSW",
+      "actual_champion": "TOR",
+      "file": "seasons/2019_full.json"
+    },
+    {
+      "run_id": "2019_modern",
+      "year": 2019,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "GSW",
+      "actual_champion": "TOR",
+      "file": "seasons/2019_modern.json"
+    },
+    {
+      "run_id": "2019_recent",
+      "year": 2019,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "GSW",
+      "actual_champion": null,
+      "file": "seasons/2019_recent.json"
+    },
+    {
+      "run_id": "2020_full",
+      "year": 2020,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "MIL",
+      "actual_champion": "LAL",
+      "file": "seasons/2020_full.json"
+    },
+    {
+      "run_id": "2020_modern",
+      "year": 2020,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "MIL",
+      "actual_champion": "LAL",
+      "file": "seasons/2020_modern.json"
+    },
+    {
+      "run_id": "2020_recent",
+      "year": 2020,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "MIL",
+      "actual_champion": null,
+      "file": "seasons/2020_recent.json"
+    },
+    {
+      "run_id": "2021_full",
+      "year": 2021,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "UTA",
+      "actual_champion": "MIL",
+      "file": "seasons/2021_full.json"
+    },
+    {
+      "run_id": "2021_modern",
+      "year": 2021,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "PHI",
+      "actual_champion": "MIL",
+      "file": "seasons/2021_modern.json"
+    },
+    {
+      "run_id": "2021_recent",
+      "year": 2021,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "BRK",
+      "actual_champion": null,
+      "file": "seasons/2021_recent.json"
+    },
+    {
+      "run_id": "2022_full",
+      "year": 2022,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "PHO",
+      "actual_champion": "GSW",
+      "file": "seasons/2022_full.json"
+    },
+    {
+      "run_id": "2022_modern",
+      "year": 2022,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "PHO",
+      "actual_champion": "GSW",
+      "file": "seasons/2022_modern.json"
+    },
+    {
+      "run_id": "2022_recent",
+      "year": 2022,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "PHO",
+      "actual_champion": null,
+      "file": "seasons/2022_recent.json"
+    },
+    {
+      "run_id": "2023_full",
+      "year": 2023,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "MIL",
+      "actual_champion": "DEN",
+      "file": "seasons/2023_full.json"
+    },
+    {
+      "run_id": "2023_modern",
+      "year": 2023,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "DEN",
+      "actual_champion": "DEN",
+      "file": "seasons/2023_modern.json"
+    },
+    {
+      "run_id": "2023_recent",
+      "year": 2023,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "DEN",
+      "actual_champion": null,
+      "file": "seasons/2023_recent.json"
+    },
+    {
+      "run_id": "2024_full",
+      "year": 2024,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "BOS",
+      "actual_champion": "BOS",
+      "file": "seasons/2024_full.json"
+    },
+    {
+      "run_id": "2024_modern",
+      "year": 2024,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "BOS",
+      "actual_champion": "BOS",
+      "file": "seasons/2024_modern.json"
+    },
+    {
+      "run_id": "2024_recent",
+      "year": 2024,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "BOS",
+      "actual_champion": null,
+      "file": "seasons/2024_recent.json"
+    },
+    {
+      "run_id": "2025_full",
+      "year": 2025,
+      "window": "full",
+      "year_type": "validation",
+      "predicted_champion": "OKC",
+      "actual_champion": null,
+      "file": "seasons/2025_full.json"
+    },
+    {
+      "run_id": "2025_modern",
+      "year": 2025,
+      "window": "modern",
+      "year_type": "validation",
+      "predicted_champion": "OKC",
+      "actual_champion": null,
+      "file": "seasons/2025_modern.json"
+    },
+    {
+      "run_id": "2025_recent",
+      "year": 2025,
+      "window": "recent",
+      "year_type": "validation",
+      "predicted_champion": "OKC",
+      "actual_champion": null,
+      "file": "seasons/2025_recent.json"
+    }
+  ]
+}
