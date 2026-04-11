@@ -1,7 +1,7 @@
 {
   "metadata": {
     "season": 2025,
-    "generated_at": "2026-04-11T07:08:10.142615+00:00",
+    "generated_at": "2026-04-11T07:17:41.296374+00:00",
     "n_simulations": 50000,
     "training_window": "recent (2014\u20132024)",
     "n_obs": 165,
@@ -22,8 +22,8 @@
     "insample_fit": {
       "correct_series": 128,
       "total_series": 165,
-      "correct_champs": 0,
-      "total_champs": 0
+      "correct_champs": 4,
+      "total_champs": 11
     }
   },
   "actual_champion": null,

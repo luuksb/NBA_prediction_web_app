@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-11T07:14:19.278418+00:00",
+  "generated_at": "2026-04-11T07:17:26.372242+00:00",
   "training_windows": {
     "full": {
       "window_span": "1980\u20132024",
@@ -69,8 +69,8 @@
       "insample_fit": {
         "correct_series": 128,
         "total_series": 165,
-        "correct_champs": 0,
-        "total_champs": 0
+        "correct_champs": 4,
+        "total_champs": 11
       }
     }
   }
