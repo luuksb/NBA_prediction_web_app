@@ -37,12 +37,12 @@ const CANVAS_HEIGHT = 520;
 const BOX_W = 130;
 const BOX_H = 75; // 2 × 36px rows + 3px gap — actual rendered height
 
-// X positions — symmetric, non-overlapping
+// X positions — CF boxes pulled in close to R2 (partial overlap)
 const WEST_R1_X = 0;
 const WEST_R2_X = 205;
-const WEST_CF_X = 385;
+const WEST_CF_X = 290;
 const FINALS_X = 565; // center = 630 = CANVAS_WIDTH / 2
-const EAST_CF_X = 745;
+const EAST_CF_X = 840;
 const EAST_R2_X = 925;
 const EAST_R1_X = 1130;
 
