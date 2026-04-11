@@ -7,7 +7,7 @@
  *                 + Championship chart + Upset predictions (below fold)
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import BracketCanvas from './BracketCanvas.jsx';
 import ProbabilityChart from './ProbabilityChart.jsx';
 
@@ -101,7 +101,7 @@ function FeatureChip({ children }) {
     <span
       className="inline-block text-xs rounded-md px-2 py-0.5 mb-1.5 mr-1"
       style={{
-        background: '#1a3052',
+        background: '#182338',
         color: '#8fa3c1',
         border: '1px solid #2a3a54',
         fontSize: '10px',
@@ -191,6 +191,44 @@ function InSampleFitSection({ nbaResults }) {
   );
 }
 
+/** Injury Impact module — only renders when injury_impact data is present (2025+). */
+function InjuryImpactSection({ injuryData }) {
+  if (!injuryData) return null;
+  const { pct_finals_with_injury, healthy_finalist_win_rate, pct_champ_with_injury } = injuryData;
+  const fmt = (v) => `${Math.round(v * 100)}%`;
+  const items = [
+    `${fmt(pct_finals_with_injury)} of Finals have 1+ injured star`,
+    `Healthy finalist wins ${fmt(healthy_finalist_win_rate)} of 1-sided injury matchups`,
+    `Champion overcame an injury in ${fmt(pct_champ_with_injury)} of all simulated Finals`,
+  ];
+  return (
+    <>
+      <SidebarHeader>Injury Impact*</SidebarHeader>
+      <p style={{ fontSize: '9px', color: '#8fa3c1', marginTop: '-6px', marginBottom: '6px' }}>
+        * Out-of-sample (2025–2026) only
+      </p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        {items.map((item, i) => (
+          <div
+            key={i}
+            style={{
+              background: '#182338',
+              color: '#8fa3c1',
+              border: '1px solid #2a3a54',
+              borderRadius: 6,
+              padding: '4px 8px',
+              fontSize: '10px',
+              lineHeight: '1.5',
+            }}
+          >
+            {item}
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
 /** Longest Shots: 3 teams with lowest nonzero championship probability. */
 function LongestShots({ data }) {
   const { championship_probs: probs, teams, metadata: m } = data;
@@ -271,6 +309,8 @@ export default function NBADashboard() {
   const [error, setError] = useState(null);
   const [probMode, setProbMode] = useState('Matchup Win %');
   const [nbaResults, setNbaResults] = useState(null);
+  const bracketRef = useRef(null);
+  const [bracketScale, setBracketScale] = useState(1);
 
   // Load run index once on mount
   useEffect(() => {
@@ -300,6 +340,18 @@ export default function NBADashboard() {
       .then(setData)
       .catch((e) => setError(e.message));
   }, [selectedYear, selectedWindow]);
+
+  // Scale bracket to available container width
+  useEffect(() => {
+    const el = bracketRef.current;
+    if (!el) return;
+    const obs = new ResizeObserver(([entry]) => {
+      const w = entry.contentRect.width;
+      if (w > 0) setBracketScale(w / 1260);
+    });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   // Derive available years and windows from the index
   const availableYears = index
@@ -348,7 +400,7 @@ export default function NBADashboard() {
       {/* ── Left sidebar ──────────────────────────────────────────────── */}
       <aside
         className="shrink-0 rounded-2xl p-4 border border-court-border"
-        style={{ width: 232, background: '#1e2a45', boxShadow: '0 4px 20px rgba(0,0,0,0.35)' }}
+        style={{ width: 320, background: '#1e2a45', boxShadow: '0 4px 20px rgba(0,0,0,0.35)' }}
       >
         {/* Configuration */}
         <SidebarHeader>Configuration</SidebarHeader>
@@ -372,9 +424,13 @@ export default function NBADashboard() {
         <div className="mt-1 mb-1">
           <p className="text-xs font-semibold mb-1" style={{ color: '#c8d6e8' }}>Features:</p>
           <div className="flex flex-wrap">
-            {(m.features ?? []).map((f) => (
-              <FeatureChip key={f}>{f}</FeatureChip>
-            ))}
+            {(m.features ?? []).map((f) => {
+              const coef = m.coefficients?.[f];
+              const coefStr = coef != null
+                ? ` (${coef >= 0 ? '+' : ''}${coef.toFixed(4)})`
+                : '';
+              return <FeatureChip key={f}>{f}{coefStr}</FeatureChip>;
+            })}
           </div>
         </div>
 
@@ -388,6 +444,9 @@ export default function NBADashboard() {
 
         {/* In-Sample Fit */}
         <InSampleFitSection nbaResults={nbaResults} />
+
+        {/* Injury Impact (2025+ only) */}
+        <InjuryImpactSection injuryData={data.injury_impact} />
       </aside>
 
       {/* ── Right main panel ──────────────────────────────────────────── */}
@@ -456,17 +515,23 @@ export default function NBADashboard() {
             </div>
           </div>
 
-          {/* Bracket canvas (horizontally scrollable on narrow viewports) */}
+          {/* Bracket canvas — scales fluidly to container width */}
           <div
-            className="relative overflow-x-auto"
-            style={{ WebkitOverflowScrolling: 'touch' }}
+            ref={bracketRef}
+            style={{
+              width: '100%',
+              overflow: 'hidden',
+              position: 'relative',
+              height: Math.round(520 * bracketScale),
+            }}
           >
-            {/* Right-edge fade hint on narrow viewports */}
             <div
-              className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 z-10 lg:hidden"
-              style={{ background: 'linear-gradient(to left, #0a1929 0%, transparent 100%)' }}
-            />
-            <div style={{ minWidth: 1260 }}>
+              style={{
+                transform: `scale(${bracketScale})`,
+                transformOrigin: 'top left',
+                width: 1260,
+              }}
+            >
               <BracketCanvas
                 data={data}
                 probMode={probMode}
