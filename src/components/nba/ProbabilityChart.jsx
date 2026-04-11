@@ -21,6 +21,10 @@ function logoUrl(abbrev) {
   return `https://a.espncdn.com/i/teamlogos/nba/500/${espnAbbrev(abbrev)}.png`;
 }
 
+const MAX_BAR_H = 160;
+// Minimum pixel width per team column — ensures bars never overlap at any viewport
+const MIN_COL_W = 32;
+
 export default function ProbabilityChart({ data }) {
   const { championship_probs: probs, teams } = data;
 
@@ -30,89 +34,60 @@ export default function ProbabilityChart({ data }) {
     .sort((a, b) => b.prob - a.prob);
 
   const maxProb = sorted[0]?.prob ?? 1;
-  const n = sorted.length;
-
-  // SVG dimensions
-  const BAR_AREA_H = 160;
-  const LABEL_H = 40; // logo + abbrev row below bars
-  const SVG_H = BAR_AREA_H + LABEL_H + 24; // 24px for pct labels above bars
-  const COL_W = 100 / n; // percent width per column
 
   return (
     <div className="w-full overflow-x-auto">
-      <svg
-        viewBox={`0 0 100 ${SVG_H}`}
-        preserveAspectRatio="none"
-        style={{ width: '100%', height: SVG_H * 5 + 'px', maxHeight: 280 }}
-        aria-label="Championship probability bar chart"
-      >
-        {sorted.map(({ abbrev, prob, team }, i) => {
-          const isWest = team?.conference === 'West';
-          const color = isWest ? WEST_COLOR : EAST_COLOR;
-          const barH = Math.max(0.5, (prob / maxProb) * BAR_AREA_H);
-          const barY = 24 + (BAR_AREA_H - barH);
-          const cx = i * COL_W + COL_W / 2;
-          const pctLabel = prob < 0.005
-            ? `${(prob * 100).toFixed(1)}%`
-            : `${Math.round(prob * 100)}%`;
-
-          return (
-            <g key={abbrev}>
-              {/* percentage label above bar */}
-              <text
-                x={cx}
-                y={barY - 2}
-                textAnchor="middle"
-                fontSize="3.5"
-                fill="#8fa3c1"
+      {/* minWidth prevents columns from squishing below MIN_COL_W each */}
+      <div style={{ minWidth: sorted.length * MIN_COL_W }}>
+        {/* Bars row — fixed height, bars align to bottom baseline */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'flex-end',
+            width: '100%',
+            height: MAX_BAR_H + 22,
+            borderBottom: '1px solid #2a3a54',
+          }}
+        >
+          {sorted.map(({ abbrev, prob, team }) => {
+            const isWest = team?.conference === 'West';
+            const color = isWest ? WEST_COLOR : EAST_COLOR;
+            const barH = Math.max(2, Math.round((prob / maxProb) * MAX_BAR_H));
+            const pctLabel = prob < 0.005
+              ? `${(prob * 100).toFixed(1)}%`
+              : `${Math.round(prob * 100)}%`;
+            return (
+              <div
+                key={abbrev}
+                style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: 0, padding: '0 1px' }}
               >
-                {pctLabel}
-              </text>
+                <span style={{ fontSize: 9, color: '#8fa3c1', marginBottom: 2, whiteSpace: 'nowrap' }}>
+                  {pctLabel}
+                </span>
+                <div style={{ width: '80%', height: barH, background: color, borderRadius: '4px 4px 0 0' }} />
+              </div>
+            );
+          })}
+        </div>
 
-              {/* bar */}
-              <rect
-                x={i * COL_W + COL_W * 0.1}
-                y={barY}
-                width={COL_W * 0.8}
-                height={barH}
-                fill={color}
-                rx="0.8"
-                ry="0"
+        {/* Logo + abbrev row */}
+        <div style={{ display: 'flex', width: '100%', marginTop: 4 }}>
+          {sorted.map(({ abbrev }) => (
+            <div
+              key={abbrev}
+              style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: 0, padding: '0 1px' }}
+            >
+              <img
+                src={logoUrl(abbrev)}
+                alt={abbrev}
+                style={{ width: 22, height: 22, objectFit: 'contain' }}
+                onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }}
               />
-
-              {/* baseline */}
-              <line
-                x1={i * COL_W}
-                y1={24 + BAR_AREA_H}
-                x2={(i + 1) * COL_W}
-                y2={24 + BAR_AREA_H}
-                stroke="#2a3a54"
-                strokeWidth="0.3"
-              />
-
-              {/* logo */}
-              <image
-                href={logoUrl(abbrev)}
-                x={cx - 3.5}
-                y={24 + BAR_AREA_H + 4}
-                width="7"
-                height="7"
-              />
-
-              {/* abbrev label */}
-              <text
-                x={cx}
-                y={24 + BAR_AREA_H + 16}
-                textAnchor="middle"
-                fontSize="3"
-                fill="#8fa3c1"
-              >
-                {abbrev}
-              </text>
-            </g>
-          );
-        })}
-      </svg>
+              <span style={{ fontSize: 8, color: '#8fa3c1', marginTop: 1 }}>{abbrev}</span>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Legend */}
       <div className="flex gap-4 justify-center mt-2 text-xs text-court-text">

@@ -10,7 +10,6 @@
 import { useState, useEffect } from 'react';
 import BracketCanvas from './BracketCanvas.jsx';
 import ProbabilityChart from './ProbabilityChart.jsx';
-import UpsetPanel from './UpsetPanel.jsx';
 
 // Window display labels
 const WINDOW_LABELS = {
@@ -18,6 +17,9 @@ const WINDOW_LABELS = {
   modern: 'Modern',
   recent: 'Recent',
 };
+
+// Hardcoded observations per training window
+const N_OBS = { full: 659, modern: 375, recent: 165 };
 
 // ---------------------------------------------------------------------------
 // Derive top-N upset predictions from bracket data
@@ -144,6 +146,87 @@ function PerfRow({ label, value }) {
   );
 }
 
+/** In-Sample Fit table shown below Model Performance. */
+function InSampleFitSection({ nbaResults }) {
+  if (!nbaResults) return null;
+  const windows = ['full', 'modern', 'recent'];
+  const CAPS = { full: 'Full', modern: 'Modern', recent: 'Recent' };
+  return (
+    <>
+      <SidebarHeader>In-Sample Fit</SidebarHeader>
+      <div className="rounded-lg border border-court-border overflow-hidden" style={{ background: '#182338' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
+          <thead>
+            <tr style={{ background: '#253350', borderBottom: '1px solid #2a3a54' }}>
+              <th style={{ width: '42%', padding: '4px 6px', textAlign: 'left', color: '#8fa3c1', fontSize: '9px', fontWeight: 600, letterSpacing: '0.05em' }}>Window</th>
+              <th style={{ width: '29%', padding: '4px 6px', textAlign: 'right', color: '#8fa3c1', fontSize: '9px', fontWeight: 600, letterSpacing: '0.05em' }}>Series</th>
+              <th style={{ width: '29%', padding: '4px 6px', textAlign: 'right', color: '#8fa3c1', fontSize: '9px', fontWeight: 600, letterSpacing: '0.05em' }}>Champs</th>
+            </tr>
+          </thead>
+          <tbody>
+            {windows.map((w) => {
+              const tw = nbaResults.training_windows?.[w];
+              if (!tw) return null;
+              const { correct_series: cs, total_series: ts, correct_champs: cc, total_champs: tc } = tw.insample_fit;
+              const sPct = `${Math.round((cs / ts) * 100)}%`;
+              const cPct = tc > 0 ? `${Math.round((cc / tc) * 100)}%` : '—';
+              return (
+                <tr key={w} style={{ borderBottom: '1px solid #1e2a45' }}>
+                  <td style={{ padding: '4px 6px', color: '#8fa3c1', fontSize: '10px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    {CAPS[w]} ({tw.window_span})
+                  </td>
+                  <td style={{ padding: '4px 6px', textAlign: 'right', color: '#e8f0fb', fontSize: '10px', whiteSpace: 'nowrap' }}>
+                    {cs}/{ts} <span style={{ color: '#8fa3c1' }}>({sPct})</span>
+                  </td>
+                  <td style={{ padding: '4px 6px', textAlign: 'right', color: '#e8f0fb', fontSize: '10px', whiteSpace: 'nowrap' }}>
+                    {cc}/{tc} <span style={{ color: '#8fa3c1' }}>({cPct})</span>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}
+
+/** Longest Shots: 3 teams with lowest nonzero championship probability. */
+function LongestShots({ data }) {
+  const { championship_probs: probs, teams, metadata: m } = data;
+  const nSims = m.n_simulations;
+
+  const shots = Object.entries(probs)
+    .filter(([, v]) => v > 0)
+    .sort((a, b) => a[1] - b[1])
+    .slice(0, 3)
+    .map(([abbrev, prob]) => ({ abbrev, prob, team: teams[abbrev] }));
+
+  if (!shots.length) return <p className="text-court-text text-sm">No data.</p>;
+
+  return (
+    <div>
+      {shots.map(({ abbrev, prob, team }) => {
+        const nWins = Math.round(prob * nSims);
+        const pctLabel = (prob * 100).toFixed(3) + '%';
+        return (
+          <div key={abbrev} style={{ marginBottom: 12 }}>
+            <div style={{ fontSize: 12, color: '#8fa3c1', marginBottom: 1 }}>
+              {team?.name ?? abbrev}
+            </div>
+            <div style={{ fontSize: 24, fontWeight: 700, color: '#ffffff', lineHeight: 1.1 }}>
+              {pctLabel}
+            </div>
+            <div style={{ fontSize: 11, color: '#ffffff', marginTop: 2 }}>
+              {nWins.toLocaleString()} / {nSims.toLocaleString()} sims
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Right panel sub-components
 // ---------------------------------------------------------------------------
@@ -187,6 +270,7 @@ export default function NBADashboard() {
   const [data, setData]   = useState(null);
   const [error, setError] = useState(null);
   const [probMode, setProbMode] = useState('Matchup Win %');
+  const [nbaResults, setNbaResults] = useState(null);
 
   // Load run index once on mount
   useEffect(() => {
@@ -194,6 +278,14 @@ export default function NBADashboard() {
       .then((r) => r.json())
       .then(setIndex)
       .catch((e) => console.warn('Failed to load index:', e));
+  }, []);
+
+  // Load global model results (in-sample fit) once on mount
+  useEffect(() => {
+    fetch('/data/nba_results.json')
+      .then((r) => r.json())
+      .then(setNbaResults)
+      .catch((e) => console.warn('Failed to load nba_results:', e));
   }, []);
 
   // Fetch season data whenever year or window changes
@@ -251,8 +343,6 @@ export default function NBADashboard() {
     ? `${Math.round(m.n_simulations / 1000)}k`
     : '—';
 
-  const upsets = deriveUpsets(data.bracket);
-
   return (
     <div className="flex gap-5 items-start">
       {/* ── Left sidebar ──────────────────────────────────────────────── */}
@@ -278,6 +368,7 @@ export default function NBADashboard() {
         {/* Model Specification */}
         <SidebarHeader>Model Specification</SidebarHeader>
         <SpecRow label="Training window" value={m.training_window} />
+        <SpecRow label="Observations (N)" value={N_OBS[selectedWindow]} />
         <div className="mt-1 mb-1">
           <p className="text-xs font-semibold mb-1" style={{ color: '#c8d6e8' }}>Features:</p>
           <div className="flex flex-wrap">
@@ -294,6 +385,9 @@ export default function NBADashboard() {
           <PerfRow label="AUC-ROC" value={m.auc?.toFixed(3)} />
           <PerfRow label="Brier score" value={m.brier_score?.toFixed(3)} />
         </div>
+
+        {/* In-Sample Fit */}
+        <InSampleFitSection nbaResults={nbaResults} />
       </aside>
 
       {/* ── Right main panel ──────────────────────────────────────────── */}
@@ -388,8 +482,8 @@ export default function NBADashboard() {
             <ProbabilityChart data={data} />
           </div>
           <div>
-            <SectionTitle>Top Upset Predictions</SectionTitle>
-            <UpsetPanel upsets={upsets} teams={data.teams} />
+            <SectionTitle>Longest Shots</SectionTitle>
+            <LongestShots data={data} />
           </div>
         </div>
       </div>
