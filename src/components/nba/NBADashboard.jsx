@@ -13,7 +13,7 @@ import ProbabilityChart from './ProbabilityChart.jsx';
 
 // Window display labels
 const WINDOW_LABELS = {
-  full:   'Full',
+  full: 'Full',
   modern: 'Modern',
   recent: 'Recent',
 };
@@ -315,10 +315,10 @@ function SectionTitle({ children }) {
 // NBADashboard
 // ---------------------------------------------------------------------------
 export default function NBADashboard() {
-  const [index, setIndex]               = useState(null);
+  const [index, setIndex] = useState(null);
   const [selectedYear, setSelectedYear] = useState(2025);
   const [selectedWindow, setSelectedWindow] = useState('modern');
-  const [data, setData]   = useState(null);
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [probMode, setProbMode] = useState('Matchup Win %');
   const [nbaResults, setNbaResults] = useState(null);
@@ -386,7 +386,7 @@ export default function NBADashboard() {
   };
 
   if (error) return <ErrorMessage message={error} />;
-  if (!data)  return <LoadingSpinner />;
+  if (!data) return <LoadingSpinner />;
 
   const m = data.metadata;
   const season = m.season;
@@ -536,13 +536,13 @@ export default function NBADashboard() {
             </div>
           </div>
 
-          {/* Bracket canvas — scales to fit container, capped at native 1260px */}
+          {/* Bracket canvas — scales fluidly to container width */}
           <div
             ref={bracketRef}
             style={{
               width: '100%',
-              position: 'relative',
               overflow: 'hidden',
+              position: 'relative',
               height: Math.round(520 * bracketScale),
             }}
           >
@@ -551,9 +551,9 @@ export default function NBADashboard() {
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                width: 1260,
                 transform: `scale(${bracketScale})`,
                 transformOrigin: 'top left',
+                width: 1260,
               }}
             >
               <BracketCanvas
