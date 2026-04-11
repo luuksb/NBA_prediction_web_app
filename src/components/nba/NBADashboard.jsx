@@ -364,7 +364,7 @@ export default function NBADashboard() {
     });
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  }, [data]);
 
   // Derive available years and windows from the index
   const availableYears = index
