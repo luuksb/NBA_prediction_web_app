@@ -102,7 +102,7 @@ function FeatureChip({ children }) {
       className="inline-block text-xs rounded-md px-2 py-0.5 mb-1.5 mr-1"
       style={{
         background: '#182338',
-        color: '#8fa3c1',
+        color: '#ffffff',
         border: '1px solid #2a3a54',
         fontSize: '10px',
         fontWeight: 500,
@@ -114,12 +114,25 @@ function FeatureChip({ children }) {
   );
 }
 
+/** Horizontal rule divider between sidebar sections. */
+function SidebarDivider() {
+  return (
+    <hr
+      style={{
+        border: 'none',
+        borderTop: '1px solid rgba(255,255,255,0.15)',
+        margin: '16px 0',
+      }}
+    />
+  );
+}
+
 /** Section header inside the left sidebar. */
 function SidebarHeader({ children }) {
   return (
     <p
-      className="font-bold text-white mb-2 mt-4 first:mt-0"
-      style={{ fontSize: '13px' }}
+      className="font-bold text-white mb-2"
+      style={{ fontSize: '15px' }}
     >
       {children}
     </p>
@@ -129,8 +142,8 @@ function SidebarHeader({ children }) {
 /** Key/value row inside the left sidebar. */
 function SpecRow({ label, value }) {
   return (
-    <p className="text-xs mb-1" style={{ color: '#8fa3c1' }}>
-      <span style={{ color: '#c8d6e8', fontWeight: 600 }}>{label}:</span>{' '}
+    <p className="text-xs mb-1" style={{ color: '#ffffff' }}>
+      <span style={{ color: '#ffffff', fontWeight: 600 }}>{label}:</span>{' '}
       {value ?? '—'}
     </p>
   );
@@ -204,7 +217,7 @@ function InjuryImpactSection({ injuryData }) {
   return (
     <>
       <SidebarHeader>Injury Impact*</SidebarHeader>
-      <p style={{ fontSize: '9px', color: '#8fa3c1', marginTop: '-6px', marginBottom: '6px' }}>
+      <p style={{ fontSize: '9px', color: '#ffffff', marginTop: '-6px', marginBottom: '6px' }}>
         * Out-of-sample (2025–2026) only
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
@@ -213,7 +226,7 @@ function InjuryImpactSection({ injuryData }) {
             key={i}
             style={{
               background: '#182338',
-              color: '#8fa3c1',
+              color: '#ffffff',
               border: '1px solid #2a3a54',
               borderRadius: 6,
               padding: '4px 8px',
@@ -290,8 +303,8 @@ function StatCard({ label, value }) {
 function SectionTitle({ children }) {
   return (
     <h2
-      className="font-bold text-white mb-3 uppercase tracking-wide"
-      style={{ fontSize: '11px', color: '#8fa3c1' }}
+      className="font-bold mb-3 uppercase tracking-wide"
+      style={{ fontSize: '13px', color: '#ffffff' }}
     >
       {children}
     </h2>
@@ -347,7 +360,7 @@ export default function NBADashboard() {
     if (!el) return;
     const obs = new ResizeObserver(([entry]) => {
       const w = entry.contentRect.width;
-      if (w > 0) setBracketScale(w / 1260);
+      if (w > 0) setBracketScale(Math.min(w / 1260, 1));
     });
     obs.observe(el);
     return () => obs.disconnect();
@@ -417,12 +430,14 @@ export default function NBADashboard() {
           onChange={setSelectedWindow}
         />
 
+        <SidebarDivider />
+
         {/* Model Specification */}
         <SidebarHeader>Model Specification</SidebarHeader>
         <SpecRow label="Training window" value={m.training_window} />
         <SpecRow label="Observations (N)" value={N_OBS[selectedWindow]} />
         <div className="mt-1 mb-1">
-          <p className="text-xs font-semibold mb-1" style={{ color: '#c8d6e8' }}>Features:</p>
+          <p className="text-xs font-semibold mb-1" style={{ color: '#ffffff' }}>Features:</p>
           <div className="flex flex-wrap">
             {(m.features ?? []).map((f) => {
               const coef = m.coefficients?.[f];
@@ -434,6 +449,8 @@ export default function NBADashboard() {
           </div>
         </div>
 
+        <SidebarDivider />
+
         {/* Model Performance */}
         <SidebarHeader>Model Performance</SidebarHeader>
         <div className="rounded-lg border border-court-border px-3 py-1" style={{ background: '#182338' }}>
@@ -442,8 +459,12 @@ export default function NBADashboard() {
           <PerfRow label="Brier score" value={m.brier_score?.toFixed(3)} />
         </div>
 
+        <SidebarDivider />
+
         {/* In-Sample Fit */}
         <InSampleFitSection nbaResults={nbaResults} />
+
+        <SidebarDivider />
 
         {/* Injury Impact (2025+ only) */}
         <InjuryImpactSection injuryData={data.injury_impact} />
@@ -453,7 +474,7 @@ export default function NBADashboard() {
       <div className="flex-1 min-w-0 space-y-5">
         {/* Page title */}
         <div>
-          <h1 className="text-white font-bold text-2xl tracking-tight">
+          <h1 className="text-white font-bold text-3xl tracking-tight">
             NBA Playoff Prediction Model
           </h1>
           <p className="text-court-text text-sm mt-0.5">
@@ -515,21 +536,24 @@ export default function NBADashboard() {
             </div>
           </div>
 
-          {/* Bracket canvas — scales fluidly to container width */}
+          {/* Bracket canvas — scales to fit container, capped at native 1260px */}
           <div
             ref={bracketRef}
             style={{
               width: '100%',
-              overflow: 'hidden',
               position: 'relative',
+              overflow: 'hidden',
               height: Math.round(520 * bracketScale),
             }}
           >
             <div
               style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: 1260,
                 transform: `scale(${bracketScale})`,
                 transformOrigin: 'top left',
-                width: 1260,
               }}
             >
               <BracketCanvas
