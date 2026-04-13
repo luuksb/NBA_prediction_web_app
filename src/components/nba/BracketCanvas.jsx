@@ -32,18 +32,18 @@ function logoUrl(abbrev) {
 // ---------------------------------------------------------------------------
 // Layout constants (match Python html_renderer.py)
 // ---------------------------------------------------------------------------
-const CANVAS_WIDTH = 1260;
+const CANVAS_WIDTH = 1290;
 const CANVAS_HEIGHT = 520;
-const BOX_W = 130;
-const BOX_H = 75; // 2 × 36px rows + 3px gap — actual rendered height
+const BOX_W = 160;
+const BOX_H = 92; // proportional to BOX_W (75 × 160/130)
 
 // X positions — CF boxes pulled in close to R2 (partial overlap)
 const WEST_R1_X = 0;
-const WEST_R2_X = 205;
-const WEST_CF_X = 290;
-const FINALS_X = 565; // center = 630 = CANVAS_WIDTH / 2
-const EAST_CF_X = 840;
-const EAST_R2_X = 925;
+const WEST_R2_X = 175;
+const WEST_CF_X = 260;
+const FINALS_X = 565; // center = 645 = CANVAS_WIDTH / 2
+const EAST_CF_X = 870;
+const EAST_R2_X = 955;
 const EAST_R1_X = 1130;
 
 // Y layout
@@ -205,10 +205,10 @@ function ConnectorLines({ r1Y, r2Y, cfY, finalsY }) {
   const cfCy = cfY + ACTUAL_H / 2;
 
   // Gather x = midpoint of source right edge and dest left edge
-  const gWestR1R2 = (WEST_R1_X + BOX_W + WEST_R2_X) / 2; // ~167
-  const gWestR2CF = (WEST_R2_X + BOX_W + WEST_CF_X) / 2; // ~360
-  const gEastR1R2 = (EAST_R1_X + EAST_R2_X + BOX_W) / 2; // ~1092
-  const gEastR2CF = (EAST_R2_X + EAST_CF_X + BOX_W) / 2; // ~900
+  const gWestR1R2 = (WEST_R1_X + BOX_W + WEST_R2_X) / 2; // ~168
+  const gWestR2CF = (WEST_R2_X + BOX_W + WEST_CF_X) / 2; // ~298
+  const gEastR1R2 = (EAST_R1_X + EAST_R2_X + BOX_W) / 2; // ~1123
+  const gEastR2CF = (EAST_R2_X + EAST_CF_X + BOX_W) / 2; // ~993
 
   return (
     <svg
