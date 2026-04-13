@@ -8,7 +8,7 @@
  */
 
 import { useState, useEffect, useRef } from 'react';
-import BracketCanvas from './BracketCanvas.jsx';
+import BracketCanvas, { CANVAS_WIDTH as BRACKET_CANVAS_WIDTH, CANVAS_HEIGHT as BRACKET_CANVAS_HEIGHT } from './BracketCanvas.jsx';
 import ProbabilityChart from './ProbabilityChart.jsx';
 
 // Window display labels
@@ -360,7 +360,7 @@ export default function NBADashboard() {
     if (!el) return;
     const obs = new ResizeObserver(([entry]) => {
       const w = entry.contentRect.width;
-      if (w > 0) setBracketScale(Math.min(w / 1260, 1));
+      if (w > 0) setBracketScale(Math.min(w / BRACKET_CANVAS_WIDTH, 1.3));
     });
     obs.observe(el);
     return () => obs.disconnect();
@@ -543,7 +543,7 @@ export default function NBADashboard() {
               width: '100%',
               overflow: 'hidden',
               position: 'relative',
-              height: Math.round(520 * bracketScale),
+              height: Math.round(BRACKET_CANVAS_HEIGHT * bracketScale),
             }}
           >
             <div
@@ -553,7 +553,7 @@ export default function NBADashboard() {
                 left: 0,
                 transform: `scale(${bracketScale})`,
                 transformOrigin: 'top left',
-                width: 1260,
+                width: BRACKET_CANVAS_WIDTH,
               }}
             >
               <BracketCanvas
