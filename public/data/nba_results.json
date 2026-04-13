@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-11T07:17:26.372242+00:00",
+  "generated_at": "2026-04-13T20:47:24.914312+00:00",
   "training_windows": {
     "full": {
       "window_span": "1980\u20132024",
@@ -15,6 +15,18 @@
         "delta_ts_percent": 12.266175864091624
       },
       "intercept": 1.148215003704729,
+      "z_values": {
+        "delta_bpm_avail_sum": 3.315,
+        "delta_playoff_series_wins": 2.9277,
+        "delta_ts_percent": 2.248
+      },
+      "p_values": {
+        "delta_bpm_avail_sum": 0.0009,
+        "delta_playoff_series_wins": 0.0034,
+        "delta_ts_percent": 0.0246
+      },
+      "intercept_z": 10.6735,
+      "intercept_p": 0.0,
       "pseudo_r2": 0.0705,
       "auc": 0.6834,
       "brier_score": 0.1431,
@@ -39,6 +51,18 @@
         "delta_ts_percent": 14.709197789587606
       },
       "intercept": 1.0559642299840408,
+      "z_values": {
+        "delta_bpm_avail_sum": 3.6384,
+        "delta_playoff_series_wins": 2.2722,
+        "delta_ts_percent": 2.0744
+      },
+      "p_values": {
+        "delta_bpm_avail_sum": 0.0003,
+        "delta_playoff_series_wins": 0.0231,
+        "delta_ts_percent": 0.038
+      },
+      "intercept_z": 7.6551,
+      "intercept_p": 0.0,
       "pseudo_r2": 0.1043,
       "auc": 0.7155,
       "brier_score": 0.1455,
@@ -63,6 +87,18 @@
         "delta_ts_percent": 31.80033470033239
       },
       "intercept": 0.8857972762206768,
+      "z_values": {
+        "delta_bpm_avail_sum": 2.4259,
+        "delta_playoff_series_wins": 1.7529,
+        "delta_ts_percent": 2.5001
+      },
+      "p_values": {
+        "delta_bpm_avail_sum": 0.0153,
+        "delta_playoff_series_wins": 0.0796,
+        "delta_ts_percent": 0.0124
+      },
+      "intercept_z": 4.2364,
+      "intercept_p": 0.0,
       "pseudo_r2": 0.1778,
       "auc": 0.7796,
       "brier_score": 0.1435,
