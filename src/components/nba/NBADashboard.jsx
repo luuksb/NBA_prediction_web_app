@@ -23,31 +23,6 @@ const N_OBS = { full: 659, modern: 375, recent: 165 };
 
 // ---------------------------------------------------------------------------
 // Derive top-N upset predictions from bracket data
-// ---------------------------------------------------------------------------
-function deriveUpsets(bracket, topN = 5) {
-  const matchups = [];
-  for (const conf of ['West', 'East']) {
-    for (const rnd of ['R1', 'R2', 'CF']) {
-      for (const m of bracket[conf][rnd]) {
-        matchups.push({ ...m, conference: conf });
-      }
-    }
-  }
-  matchups.push({ ...bracket.Finals, conference: 'Finals' });
-
-  return matchups
-    .map((m) => ({
-      matchupId: m.matchup_id,
-      conference: m.conference,
-      topTeam: m.top_team,
-      bottomTeam: m.bottom_team,
-      topSeed: m.top_seed,
-      bottomSeed: m.bottom_seed,
-      underdogProb: 1 - m.top_win_prob,
-    }))
-    .sort((a, b) => b.underdogProb - a.underdogProb)
-    .slice(0, topN);
-}
 
 // ---------------------------------------------------------------------------
 // Loading / error states
@@ -77,7 +52,7 @@ function ErrorMessage({ message }) {
 /** Styled select dropdown that matches the sidebar dark theme. */
 function SelectField({ label, value, options, onChange }) {
   return (
-    <div className="mb-3">
+    <div className="mb-5">
       <p className="text-court-text text-xs mb-1">{label}</p>
       <select
         value={value}
@@ -107,6 +82,7 @@ function FeatureChip({ children }) {
         fontSize: '10px',
         fontWeight: 500,
         lineHeight: '1.6',
+        fontFamily: 'Cascadia Code, monospace',
       }}
     >
       {children}
@@ -121,7 +97,7 @@ function SidebarDivider() {
       style={{
         border: 'none',
         borderTop: '1px solid rgba(255,255,255,0.15)',
-        margin: '16px 0',
+        margin: '28px 0',
       }}
     />
   );
@@ -131,8 +107,8 @@ function SidebarDivider() {
 function SidebarHeader({ children }) {
   return (
     <p
-      className="font-bold text-white mb-2"
-      style={{ fontSize: '15px' }}
+      className="font-bold text-white mb-3"
+      style={{ fontSize: '23px' }}
     >
       {children}
     </p>
@@ -142,7 +118,7 @@ function SidebarHeader({ children }) {
 /** Key/value row inside the left sidebar. */
 function SpecRow({ label, value }) {
   return (
-    <p className="text-xs mb-1" style={{ color: '#ffffff' }}>
+    <p className="text-xs mb-3" style={{ color: '#ffffff' }}>
       <span style={{ color: '#ffffff', fontWeight: 600 }}>{label}:</span>{' '}
       {value ?? '—'}
     </p>
@@ -152,9 +128,67 @@ function SpecRow({ label, value }) {
 /** Metric row inside the sidebar model-performance box. */
 function PerfRow({ label, value }) {
   return (
-    <div className="flex justify-between items-center py-1 border-b border-court-border last:border-0">
+    <div className="flex justify-between items-center py-2 border-b border-court-border last:border-0">
       <span className="text-xs" style={{ color: '#8fa3c1' }}>{label}</span>
       <span className="text-xs font-mono font-semibold text-white">{value ?? '—'}</span>
+    </div>
+  );
+}
+
+/** Significance stars from p-value (standard thresholds). */
+function sigStars(p) {
+  if (p == null) return '—';
+  if (p < 0.001) return '***';
+  if (p < 0.01)  return '**';
+  if (p < 0.05)  return '*';
+  return '';
+}
+
+/** Coefficients table: feature, coef, z, p, significance. */
+function CoefficientsTable({ metadata, zValues, pValues }) {
+  const { features, coefficients } = metadata;
+  if (!features?.length) return null;
+  const thStyle = { padding: '4px 6px', textAlign: 'left', color: '#8fa3c1', fontSize: '9px', fontWeight: 600, letterSpacing: '0.05em' };
+  const tdBase = { padding: '4px 6px', fontSize: '10px', whiteSpace: 'nowrap' };
+  return (
+    <div className="rounded-lg border border-court-border overflow-hidden mt-3" style={{ background: '#182338' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
+        <thead>
+          <tr style={{ background: '#253350', borderBottom: '1px solid #2a3a54' }}>
+            <th style={{ ...thStyle, width: '38%' }}>Feature</th>
+            <th style={{ ...thStyle, width: '20%' }}>Coef.</th>
+            <th style={{ ...thStyle, width: '14%' }}>z</th>
+            <th style={{ ...thStyle, width: '16%' }}>p</th>
+            <th style={{ ...thStyle, width: '12%' }}></th>
+          </tr>
+        </thead>
+        <tbody>
+          {features.map((f) => {
+            const coef = coefficients?.[f];
+            const z    = zValues?.[f];
+            const p    = pValues?.[f];
+            const stars = sigStars(p);
+            const starColor = stars === '***' ? '#ff6b6b' : stars === '**' ? '#ffa94d' : stars === '*' ? '#ffd43b' : '#8fa3c1';
+            return (
+              <tr key={f} style={{ borderBottom: '1px solid #1e2a45' }}>
+                <td style={{ ...tdBase, color: '#8fa3c1', overflow: 'hidden', textOverflow: 'ellipsis' }}>{f}</td>
+                <td style={{ ...tdBase, color: '#e8f0fb', fontFamily: 'Cascadia Code, monospace' }}>
+                  {coef != null ? `${coef >= 0 ? '+' : ''}${coef.toFixed(4)}` : '—'}
+                </td>
+                <td style={{ ...tdBase, color: '#e8f0fb', fontFamily: 'Cascadia Code, monospace' }}>
+                  {z != null ? z.toFixed(2) : '—'}
+                </td>
+                <td style={{ ...tdBase, color: '#e8f0fb', fontFamily: 'Cascadia Code, monospace' }}>
+                  {p != null ? p.toFixed(4) : '—'}
+                </td>
+                <td style={{ ...tdBase, color: starColor, fontWeight: 700, fontFamily: 'Cascadia Code, monospace' }}>
+                  {stars}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }
@@ -172,8 +206,8 @@ function InSampleFitSection({ nbaResults }) {
           <thead>
             <tr style={{ background: '#253350', borderBottom: '1px solid #2a3a54' }}>
               <th style={{ width: '42%', padding: '4px 6px', textAlign: 'left', color: '#8fa3c1', fontSize: '9px', fontWeight: 600, letterSpacing: '0.05em' }}>Window</th>
-              <th style={{ width: '29%', padding: '4px 6px', textAlign: 'right', color: '#8fa3c1', fontSize: '9px', fontWeight: 600, letterSpacing: '0.05em' }}>Series</th>
-              <th style={{ width: '29%', padding: '4px 6px', textAlign: 'right', color: '#8fa3c1', fontSize: '9px', fontWeight: 600, letterSpacing: '0.05em' }}>Champs</th>
+              <th style={{ width: '29%', padding: '4px 6px', textAlign: 'left', color: '#8fa3c1', fontSize: '9px', fontWeight: 600, letterSpacing: '0.05em' }}>Series</th>
+              <th style={{ width: '29%', padding: '4px 6px', textAlign: 'left', color: '#8fa3c1', fontSize: '9px', fontWeight: 600, letterSpacing: '0.05em' }}>Champs</th>
             </tr>
           </thead>
           <tbody>
@@ -188,10 +222,10 @@ function InSampleFitSection({ nbaResults }) {
                   <td style={{ padding: '4px 6px', color: '#8fa3c1', fontSize: '10px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {CAPS[w]} ({tw.window_span})
                   </td>
-                  <td style={{ padding: '4px 6px', textAlign: 'right', color: '#e8f0fb', fontSize: '10px', whiteSpace: 'nowrap' }}>
+                  <td style={{ padding: '4px 6px', textAlign: 'left', color: '#e8f0fb', fontSize: '10px', whiteSpace: 'nowrap' }}>
                     {cs}/{ts} <span style={{ color: '#8fa3c1' }}>({sPct})</span>
                   </td>
-                  <td style={{ padding: '4px 6px', textAlign: 'right', color: '#e8f0fb', fontSize: '10px', whiteSpace: 'nowrap' }}>
+                  <td style={{ padding: '4px 6px', textAlign: 'left', color: '#e8f0fb', fontSize: '10px', whiteSpace: 'nowrap' }}>
                     {cc}/{tc} <span style={{ color: '#8fa3c1' }}>({cPct})</span>
                   </td>
                 </tr>
@@ -220,7 +254,7 @@ function InjuryImpactSection({ injuryData }) {
       <p style={{ fontSize: '9px', color: '#ffffff', marginTop: '-6px', marginBottom: '6px' }}>
         * Out-of-sample (2025–2026) only
       </p>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {items.map((item, i) => (
           <div
             key={i}
@@ -232,6 +266,7 @@ function InjuryImpactSection({ injuryData }) {
               padding: '4px 8px',
               fontSize: '10px',
               lineHeight: '1.5',
+              fontFamily: 'Cascadia Code, monospace',
             }}
           >
             {item}
@@ -303,8 +338,8 @@ function StatCard({ label, value }) {
 function SectionTitle({ children }) {
   return (
     <h2
-      className="font-bold mb-3 uppercase tracking-wide"
-      style={{ fontSize: '13px', color: '#ffffff' }}
+      className="font-bold mb-3"
+      style={{ fontSize: '23px', color: '#ffffff' }}
     >
       {children}
     </h2>
@@ -409,7 +444,7 @@ export default function NBADashboard() {
     : '—';
 
   return (
-    <div className="flex gap-5 items-start">
+    <div className="flex gap-10 items-start">
       {/* ── Left sidebar ──────────────────────────────────────────────── */}
       <aside
         className="shrink-0 rounded-2xl p-4 border border-court-border"
@@ -436,7 +471,7 @@ export default function NBADashboard() {
         <SidebarHeader>Model Specification</SidebarHeader>
         <SpecRow label="Training window" value={m.training_window} />
         <SpecRow label="Observations (N)" value={N_OBS[selectedWindow]} />
-        <div className="mt-1 mb-1">
+        <div className="mt-3 mb-3">
           <p className="text-xs font-semibold mb-1" style={{ color: '#ffffff' }}>Features:</p>
           <div className="flex flex-wrap">
             {(m.features ?? []).map((f) => {
@@ -458,6 +493,11 @@ export default function NBADashboard() {
           <PerfRow label="AUC-ROC" value={m.auc?.toFixed(3)} />
           <PerfRow label="Brier score" value={m.brier_score?.toFixed(3)} />
         </div>
+        <CoefficientsTable
+          metadata={m}
+          zValues={nbaResults?.training_windows?.[selectedWindow]?.z_values}
+          pValues={nbaResults?.training_windows?.[selectedWindow]?.p_values}
+        />
 
         <SidebarDivider />
 
@@ -474,7 +514,7 @@ export default function NBADashboard() {
       <div className="flex-1 min-w-0 space-y-5">
         {/* Page title */}
         <div>
-          <h1 className="text-white font-bold text-3xl tracking-tight">
+          <h1 className="text-white font-bold tracking-tight" style={{ fontSize: '43px' }}>
             NBA Playoff Prediction Model
           </h1>
           <p className="text-court-text text-sm mt-0.5">
@@ -495,7 +535,7 @@ export default function NBADashboard() {
         <div>
           {/* Probability Mode toggle */}
           <div className="mb-4">
-            <p className="text-xs font-semibold mb-2" style={{ color: '#8fa3c1' }}>
+            <p className="text-xs font-semibold mb-2" style={{ color: '#ffffff' }}>
               Probability Mode
             </p>
             <div className="flex gap-5">
@@ -563,6 +603,8 @@ export default function NBADashboard() {
             </div>
           </div>
         </div>
+
+        <hr style={{ border: 'none', borderTop: '1px solid rgba(255,255,255,0.15)' }} />
 
         {/* ── Championship probabilities + Upsets (below fold) ─────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-2">
