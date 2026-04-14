@@ -1,6 +1,33 @@
 {
-  "generated_at": "2026-04-10T22:13:51.284573+00:00",
+  "generated_at": "2026-04-14T16:23:54.934853+00:00",
   "runs": [
+    {
+      "run_id": "1986_full",
+      "year": 1986,
+      "window": "full",
+      "year_type": "historical",
+      "predicted_champion": "SAC",
+      "actual_champion": "BOS",
+      "file": "seasons/1986_full.json"
+    },
+    {
+      "run_id": "1986_modern",
+      "year": 1986,
+      "window": "modern",
+      "year_type": "historical",
+      "predicted_champion": "SAC",
+      "actual_champion": "BOS",
+      "file": "seasons/1986_modern.json"
+    },
+    {
+      "run_id": "1986_recent",
+      "year": 1986,
+      "window": "recent",
+      "year_type": "historical",
+      "predicted_champion": "SAC",
+      "actual_champion": null,
+      "file": "seasons/1986_recent.json"
+    },
     {
       "run_id": "1987_full",
       "year": 1987,
@@ -1053,6 +1080,33 @@
       "predicted_champion": "OKC",
       "actual_champion": null,
       "file": "seasons/2025_recent.json"
+    },
+    {
+      "run_id": "2026_full",
+      "year": 2026,
+      "window": "full",
+      "year_type": "prediction",
+      "predicted_champion": "OKC",
+      "actual_champion": null,
+      "file": "seasons/2026_full.json"
+    },
+    {
+      "run_id": "2026_modern",
+      "year": 2026,
+      "window": "modern",
+      "year_type": "prediction",
+      "predicted_champion": "OKC",
+      "actual_champion": null,
+      "file": "seasons/2026_modern.json"
+    },
+    {
+      "run_id": "2026_recent",
+      "year": 2026,
+      "window": "recent",
+      "year_type": "prediction",
+      "predicted_champion": "DEN",
+      "actual_champion": null,
+      "file": "seasons/2026_recent.json"
     }
   ]
 }

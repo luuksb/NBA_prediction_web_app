@@ -1,9 +1,10 @@
 {
   "metadata": {
     "season": 2007,
-    "generated_at": "2026-04-10T22:12:02.765978+00:00",
+    "generated_at": "2026-04-14T16:21:39.797169+00:00",
     "n_simulations": 50000,
     "training_window": "full (1980\u20132024)",
+    "n_obs": 659,
     "features": [
       "delta_bpm_avail_sum",
       "delta_playoff_series_wins",
@@ -17,7 +18,13 @@
     "intercept": 1.148215003704729,
     "pseudo_r2": 0.0705,
     "auc": 0.6834,
-    "brier_score": 0.1431
+    "brier_score": 0.1431,
+    "insample_fit": {
+      "correct_series": 538,
+      "total_series": 659,
+      "correct_champs": 14,
+      "total_champs": 39
+    }
   },
   "actual_champion": "SAS",
   "teams": {
@@ -305,5 +312,6 @@
     "WAS": 0.00028,
     "DEN": 0.00026,
     "GSW": 0.0001
-  }
+  },
+  "injury_impact": null
 }
