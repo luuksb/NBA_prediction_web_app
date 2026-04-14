@@ -1,6 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
+
 import Nav from '../components/Nav.astro';
+
+const sections = [
+  { id: 'introduction',           label: 'Introduction' },
+  { id: 'model-explanation',      label: 'Model Explanation' },
+  { id: 'model-selection',        label: 'Model Selection & Specification' },
+  { id: 'model-performance',      label: 'Model Performance' },
+  { id: 'results',                label: 'Results' },
+];
 ---
 
 <Base
@@ -10,7 +19,222 @@ import Nav from '../components/Nav.astro';
   <Nav />
 
   <main class="w-full pl-4 sm:pl-6 pr-8 sm:pr-12 py-6" style="max-width: 1600px; margin-left: auto; margin-right: auto;">
-    <h1 class="text-white font-bold tracking-tight" style="font-size: 43px;">Documentation</h1>
-    <p class="text-court-text text-sm mt-2">Model documentation will be written here.</p>
+    <div class="flex gap-10 items-start">
+
+      <!-- Left sidebar -->
+      <aside
+        class="shrink-0 rounded-2xl p-4 border border-court-border sticky top-[57px]"
+        style="width: 280px; background: #1e2a45; box-shadow: 0 4px 20px rgba(0,0,0,0.35);"
+      >
+        <p class="font-bold text-white mb-3" style="font-size: 23px;">Content</p>
+        <nav class="flex flex-col gap-1">
+          {sections.map((s) => (
+            <a
+              href={`#${s.id}`}
+              class="text-sm py-1.5 px-2 rounded-md transition-colors hover:text-white hover:bg-white/5"
+              style="color: #8fa3c1; text-decoration: none;"
+            >
+              {s.label}
+            </a>
+          ))}
+        </nav>
+      </aside>
+
+      <!-- Main content -->
+      <div class="flex-1 min-w-0" style="max-width: 860px;">
+
+        <h1 class="text-white font-bold tracking-tight mb-1" style="font-size: 43px;">Documentation</h1>
+        <p class="text-court-text text-sm mb-8">Technical writeup of the NBA playoff prediction model.</p>
+
+        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.15); margin-bottom: 40px;" />
+
+        <!-- Introduction -->
+        <section id="introduction" class="mb-10">
+          <h2 class="font-bold text-white mb-4" style="font-size: 23px;">Introduction</h2>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            I've been following the NBA for about 6 years now and besides thoroughly enjoying the sensational basketball moments that NBA playoffs can produce, I am also really interested in the extensive statistics and numbers that accompany them. For a while now, I have been toying with the idea of building a model that predicts teams' NBA championship probabilities in a given year. This year, I finally got around to actually realizing my idea. In the end, I settled on using a logit model (binary dependent variable, fitted on historical playoff series) to predict single playoff series outcomes and simulating the knock-out structure of the playoffs using Monte Carlo simulation (50k simulations per playoffs). Finally, I built a dashboard to visualize all the results and let you play around with different years and training windows.
+          </p>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            Given that the NBA playoffs are right around the corner, I am excited to present to you the results of my model, according to which the 2026 NBA Champion will be…
+          </p>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            <strong>the Oklahoma City Thunder!</strong>
+          </p>
+          <p class="text-sm" style="color: #c8d8ee; line-height: 1.75;">
+            Of course these results are to be taken with a grain of salt, given the high variance and unpredictability that are inherent to NBA playoffs. Below I explain everything in detail including a results section describing the model outcomes in more detail. So prepare for a long read!
+          </p>
+        </section>
+
+        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.15); margin-bottom: 40px;" />
+
+        <!-- Model Explanation -->
+        <section id="model-explanation" class="mb-10">
+          <h2 class="font-bold text-white mb-4" style="font-size: 23px;">Model Explanation</h2>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            As mentioned before, I applied a logistic regression (logit) model on playoff series level. A logit model is a model that assigns coefficients (basically weights) to chosen features (explanatory variables such as team net rating) that best explain the corresponding prediction variable (probability of winning a playoff series). The weights are fitted based on historical data. The aim is to use these assigned weights to predict playoff series outcomes in the 2026 playoffs using the feature values corresponding to the 2026 season. In this case the probability we aim to predict is P(high seed wins). To include both high and low seed data in a single equation, the feature values are actually deltas, meaning the final feature values used in the model are the differences in feature values between the high and low seed in a specific series. Using the logit model to predict series-level outcomes, I then applied Monte Carlo simulation to simulate the knock-out structure of the playoffs. Starting with the 1st round brackets based on regular season seeds, the 2026 playoffs were simulated 50,000 times.
+          </p>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            To be able to construct this model and perform the simulations, I gathered historical data (1980–2024) containing playoff series information and team/player regular season data from various sources. I then built the dataset containing all raw feature values for each team/player in each historical year and the outcomes of all playoff series in that year.
+          </p>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            The raw input data set contains a long list of potential features that are meant to capture the main components that (I believe) contribute to playoff success. The aspects I considered were:
+          </p>
+          <ul class="text-sm mb-3 space-y-1.5 pl-4" style="color: #c8d8ee; line-height: 1.75; list-style: disc;">
+            <li><strong>Team strength/characteristics</strong> — reg. season wins, net rating, offensive/defensive rating, TS%, eFG% etc.</li>
+            <li><strong>Star player(s) strength</strong> — player BPM, EPM, RAPTOR, superstar flag (to capture transcendent superstar impact)</li>
+            <li><strong>Star player(s) availability</strong> — historical playoff availability</li>
+            <li><strong>Roster playoff experience</strong> — cumulative playoff series played, series won</li>
+            <li><strong>Coach success</strong> — cumulative playoff series won, playoff win percentage</li>
+            <li><strong>Referee bias</strong> — FTA/FGA, FTA/2PA</li>
+            <li><strong>Homecourt advantage</strong> — implicitly captured in the intercept (to prevent collinearity)</li>
+            <li><strong>Matchup dependent features</strong> — pace, (O)REB rate, 3PA</li>
+          </ul>
+          <p class="text-sm" style="color: #c8d8ee; line-height: 1.75;">
+            A final note on playoff availability. Due to the unpredictable nature of injuries and their enormous impact on playoff series outcomes, I have used actual playoff series availability as a feature in the model. Historically (in-sample) this works because the information is known, however, this would be impossible when using the model for predictions given that actual availability is logically not known yet before a series starts (at least injuries occurring during a series). To remediate this and be able to capture the impact of injuries on outcomes, I constructed an injury prediction module. For each simulation (50k total), a uniform random number (0–1) is drawn using the player's historical playoff availability as the baseline parameter (capped at 0.99); if the random number for a player in a series exceeds the historical playoff availability percentage, the player does not play that series, else the player is healthy and plays that series. While far from perfect, the aim is that this more accurately captures the effect of injuries in the simulations and thus in final championship probabilities. For 2026 I also incorporated injuries known at the start of the playoffs.
+          </p>
+        </section>
+
+        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.15); margin-bottom: 40px;" />
+
+        <!-- Model Selection -->
+        <section id="model-selection" class="mb-10">
+          <h2 class="font-bold text-white mb-4" style="font-size: 23px;">Model Selection &amp; Specification</h2>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            I started by defining three different training windows:
+          </p>
+          <ul class="text-sm mb-3 space-y-1.5 pl-4" style="color: #c8d8ee; line-height: 1.75; list-style: disc;">
+            <li>Full (1980–2024)</li>
+            <li>Modern (2000–2024)</li>
+            <li>Recent (2014–2024)</li>
+          </ul>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            These windows were chosen based on a mix of eras in the NBA and quality/granularity of available data. From 1980 onwards, reliable NBA data exists online, hence this was the hard cutoff for my full training dataset. From 2000 onward, more granular player metrics are available, such as EPM. Hence the shorter "modern" training window was meant to reflect these data changes. The "recent" window (2014–2024) was meant to capture the three point revolution and see the impact of this era shift on model coefficients compared to the other windows.
+          </p>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            The model selection process consisted of running a full combinatorial search based on 2–6 feature models from a list of 23 features and selecting the top 5 models per training window based on 4 different statistical performance metrics:
+          </p>
+          <ul class="text-sm mb-3 space-y-1.5 pl-4" style="color: #c8d8ee; line-height: 1.75; list-style: disc;">
+            <li>BIC — main metric given that it penalizes additional features (to prevent overfitting)</li>
+            <li>AUC</li>
+            <li>Brier Score</li>
+            <li>Pseudo R²</li>
+          </ul>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            Comparing the results over training windows and performance metrics, taking into account (statistical) significance of features, allowed me to distill which features consistently topped the leaderboards (and thus likely provide a significant predictive signal) and which features are less stable. The BIC metric generally favored a 3-feature model for all windows (sometimes also 2-feature models). The three features that were always amongst the highest ranking models, and therefore were selected in the final model, were the following:
+          </p>
+          <div class="rounded-lg border border-court-border overflow-hidden" style="background: #182338;">
+            <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+              <thead>
+                <tr style="background: #253350; border-bottom: 1px solid #2a3a54;">
+                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 9px; font-weight: 600; letter-spacing: 0.05em; width: 42%;">Feature</th>
+                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 9px; font-weight: 600; letter-spacing: 0.05em;">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #1e2a45;">
+                  <td style="padding: 6px 10px; color: #e8f0fb; font-size: 10px; font-family: 'Cascadia Code', monospace; white-space: nowrap;">delta_sum_bpm_avail</td>
+                  <td style="padding: 6px 10px; color: #8fa3c1; font-size: 11px; line-height: 1.5;">Delta between high and low seed of availability weighted EPM (BPM used as fallback if missing or before year 2000) of top 3 players per team</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #1e2a45;">
+                  <td style="padding: 6px 10px; color: #e8f0fb; font-size: 10px; font-family: 'Cascadia Code', monospace; white-space: nowrap;">delta_playoff_series_win</td>
+                  <td style="padding: 6px 10px; color: #8fa3c1; font-size: 11px; line-height: 1.5;">Delta between high and low seed of total playoff series wins per roster</td>
+                </tr>
+                <tr>
+                  <td style="padding: 6px 10px; color: #e8f0fb; font-size: 10px; font-family: 'Cascadia Code', monospace; white-space: nowrap;">delta_ts_percent</td>
+                  <td style="padding: 6px 10px; color: #8fa3c1; font-size: 11px; line-height: 1.5;">Delta between high and low seed of team True Shooting percentage</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm mt-3" style="color: #8fa3c1; line-height: 1.75; font-size: 11px;">
+            Note: the feature name "sum_bpm_avail" is a legacy name — the metric is actually EPM with BPM as the fallback for years before 2000 or where EPM is unavailable.
+          </p>
+        </section>
+
+        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.15); margin-bottom: 40px;" />
+
+        <!-- Model Performance -->
+        <section id="model-performance" class="mb-10">
+          <h2 class="font-bold text-white mb-4" style="font-size: 23px;">Model Performance</h2>
+
+          <h3 class="font-semibold text-white mb-2" style="font-size: 15px;">In-Sample</h3>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            The chosen model correctly predicts the outcome of roughly 80% of all historical playoff series (in-sample fit) for all three training windows and additionally correctly predicts around 32–36% of championships (assigns the highest championship probabilities to the actual champion). This seems low, but is more or less aligned with a 80% accuracy on series level (because 0.8⁴ ≈ 0.4). Generally, the championship favorite according to the model has a championship win probability anywhere between 30% and 50%, meaning that although they have the highest overall chance of winning the title, more times than not they will not actually win the championship. This also makes it notoriously difficult to correctly predict the final champion.
+          </p>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            Additionally, the model does not capture all signals that predict series outcomes. This is partly because only 3 features were used in the chosen model. This was, however, a conscious choice, both to prevent overfitting given the relatively small training dataset and due to the high correlation between several features. The choice of number of features is always difficult due to the inherent tradeoff between model flexibility and explanatory power. Given two teams that are exactly equal (all deltas equal to zero), the model will assign the higher seed a 74.1% chance of winning the series due to the intercept being positive and rather large (1.05 in modern window). Part of this can be attributed to home court advantage which is baked into the intercept, but part is also missing features or simply unexplained variance or noise. A good example of this is the 1995 Houston Rockets, who were the #6 seed in the west and only had a 0.1% chance of winning the title according to the model, largely because they had no home-court advantage during any of their series and were always the lower seed, but did end up taking home the title of course.
+          </p>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            I tried to at least reduce the large impact of seeding by exploring models with a larger number of features or even forcing the model to omit the intercept entirely but all these options performed significantly worse statistically speaking and did not visually improve predictions. Hence the chosen model prevailed.
+          </p>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            Lastly, the logit model does also provide a direct win probability outcome of a head-to-head matchup between two teams in a series. Note that although team A might be stronger than team B in a direct matchup, its championship probability may still be lower if team B had an easier path to the finals, thereby facing lower odds of an upset along the way. This can for example be seen in 2023 (modern training window) when Denver has the higher championship probability due to their relatively easy path to the finals, but in a direct matchup the odds are 64/36 in favor of Milwaukee. The dashboard shows this in more detail and allows you to switch between matchup probabilities and championship probabilities.
+          </p>
+
+          <h3 class="font-semibold text-white mb-2 mt-6" style="font-size: 15px;">Out-of-Sample</h3>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            Lastly, the chosen model was used to predict the out-of-sample year 2025 (for validation). All three windows correctly predicted OKC to win the title in 2025 (granted not the most difficult year to predict). The full and modern window gave OKC ~40% chance of winning the title; in the recent window this dropped to 33% (the recent window has a slightly lower intercept than the other two, thus it weights the dominant regular season of OKC slightly less). Additionally, the full and modern windows assigned the second and third place to the Cavs and Celtics respectively. In the recent window the Celtics drop out of the top three and the Lakers take their place.
+          </p>
+
+          <h3 class="font-semibold text-white mb-2 mt-6" style="font-size: 15px;">Calibration</h3>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            Admittedly, the model is not very good at discrimination, i.e. accurately predicting upsets on a single series level. The below confusion matrix (based on modern training window) shows this clearly, where the number of predicted upsets is much smaller than the number of actually occurred upsets.
+          </p>
+          <div class="rounded-lg border border-court-border overflow-hidden" style="background: #182338;">
+            <table style="width: 100%; border-collapse: collapse;">
+              <thead>
+                <tr style="background: #253350; border-bottom: 1px solid #2a3a54;">
+                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 9px; font-weight: 600; letter-spacing: 0.05em;"></th>
+                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 9px; font-weight: 600; letter-spacing: 0.05em;">Prediction: High Seed</th>
+                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 9px; font-weight: 600; letter-spacing: 0.05em;">Prediction: Upset</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #1e2a45;">
+                  <td style="padding: 6px 10px; color: #8fa3c1; font-size: 11px;">Actual: High Seed</td>
+                  <td style="padding: 6px 10px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">292</td>
+                  <td style="padding: 6px 10px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">6</td>
+                </tr>
+                <tr>
+                  <td style="padding: 6px 10px; color: #8fa3c1; font-size: 11px;">Actual: Upset</td>
+                  <td style="padding: 6px 10px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">69</td>
+                  <td style="padding: 6px 10px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">8</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm mt-3" style="color: #c8d8ee; line-height: 1.75;">
+            The strength of this model actually lies in the accuracy of its predicted probabilities compared to actual win rates rather than predicting specific outcomes correctly. I've tested the calibration of the model and found that generally the predicted probabilities match closely to observed win rates (within a 5%-point range for most buckets in the full and modern window). Only the recent window predictions sometimes deviate significantly from actual win rates (possibly due to low number of available observations).
+          </p>
+        </section>
+
+        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.15); margin-bottom: 40px;" />
+
+        <!-- Results -->
+        <section id="results" class="mb-10">
+          <h2 class="font-bold text-white mb-4" style="font-size: 23px;">Results</h2>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            As shown in the table below, the highest overall probability to win the 2026 NBA championship the model assigns to OKC (40%), followed by Denver (18%) and the Celtics (13%). The championship probability is calculated by simply dividing the number of simulations in which a specific team wins the NBA title by the total number of simulations. So let's say the Thunder win in 17,500 of the simulations; then their championship probability is 17,500/50,000 = 0.35 (= 35%).
+          </p>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            The frequency of injuries altering the championship outcome is low, given the generally high availability of players in the playoffs. However, in simulation #45,231 Denver meets Cleveland in the finals and both Jokic and Harden get injured and Cleveland proceeds to sweep Denver, showcasing once again the massive impact of superstar players on the game.
+          </p>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            Lastly, to all Blazers' fans out there, do not despair (yet)! In exactly 1 out of 50,000 simulations (0.002%) the Blazers end up winning it all. So with a little bit (read: an obscene amount) of luck, you walk away once more an NBA champion after nearly 50 years.
+          </p>
+          <p class="text-sm" style="color: #c8d8ee; line-height: 1.75;">
+            Please feel free to reach out in case you have questions or suggestions.
+          </p>
+          <p class="text-sm mt-3" style="color: #c8d8ee; line-height: 1.75;">
+            Thank you!
+          </p>
+        </section>
+
+      </div>
+    </div>
   </main>
 </Base>
+
+<style>
+  strong { color: #ffffff; }
+</style>
