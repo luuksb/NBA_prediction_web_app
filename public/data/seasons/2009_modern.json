@@ -1,9 +1,10 @@
 {
   "metadata": {
     "season": 2009,
-    "generated_at": "2026-04-10T22:12:16.327959+00:00",
+    "generated_at": "2026-04-14T16:21:53.976323+00:00",
     "n_simulations": 50000,
     "training_window": "modern (2000\u20132024)",
+    "n_obs": 375,
     "features": [
       "delta_bpm_avail_sum",
       "delta_playoff_series_wins",
@@ -17,7 +18,13 @@
     "intercept": 1.0559642299840408,
     "pseudo_r2": 0.1043,
     "auc": 0.7155,
-    "brier_score": 0.1455
+    "brier_score": 0.1455,
+    "insample_fit": {
+      "correct_series": 300,
+      "total_series": 375,
+      "correct_champs": 8,
+      "total_champs": 25
+    }
   },
   "actual_champion": "LAL",
   "teams": {
@@ -305,5 +312,6 @@
     "UTA": 0.00026,
     "DET": 4e-05,
     "CHI": 2e-05
-  }
+  },
+  "injury_impact": null
 }
