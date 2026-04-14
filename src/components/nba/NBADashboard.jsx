@@ -200,7 +200,7 @@ function InSampleFitSection({ nbaResults }) {
   const CAPS = { full: 'Full', modern: 'Modern', recent: 'Recent' };
   return (
     <>
-      <SidebarHeader>In-Sample Fit</SidebarHeader>
+      <SidebarHeader>Model Accuracy</SidebarHeader>
       <div className="rounded-lg border border-court-border overflow-hidden" style={{ background: '#182338' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed' }}>
           <thead>
@@ -252,7 +252,7 @@ function InjuryImpactSection({ injuryData }) {
     <>
       <SidebarHeader>Injury Impact*</SidebarHeader>
       <p style={{ fontSize: '9px', color: '#ffffff', marginTop: '-6px', marginBottom: '6px' }}>
-        * Out-of-sample (2025–2026) only
+        * Only applicable to 2025 &amp; 2026
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {items.map((item, i) => (
@@ -612,7 +612,7 @@ export default function NBADashboard() {
             <SectionTitle>Championship Probabilities</SectionTitle>
             <ProbabilityChart data={data} />
           </div>
-          <div>
+          <div className="lg:pl-24">
             <SectionTitle>Longest Shots</SectionTitle>
             <LongestShots data={data} />
           </div>
