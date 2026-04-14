@@ -1,9 +1,10 @@
 {
   "metadata": {
     "season": 2011,
-    "generated_at": "2026-04-10T22:12:30.047126+00:00",
+    "generated_at": "2026-04-14T16:22:07.954724+00:00",
     "n_simulations": 50000,
     "training_window": "recent (2014\u20132024)",
+    "n_obs": 165,
     "features": [
       "delta_bpm_avail_sum",
       "delta_playoff_series_wins",
@@ -17,7 +18,13 @@
     "intercept": 0.8857972762206768,
     "pseudo_r2": 0.1778,
     "auc": 0.7796,
-    "brier_score": 0.1435
+    "brier_score": 0.1435,
+    "insample_fit": {
+      "correct_series": 128,
+      "total_series": 165,
+      "correct_champs": 4,
+      "total_champs": 11
+    }
   },
   "actual_champion": null,
   "teams": {
@@ -305,5 +312,6 @@
     "MEM": 2e-05,
     "PHI": 0.0,
     "IND": 0.0
-  }
+  },
+  "injury_impact": null
 }
