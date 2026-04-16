@@ -1060,7 +1060,7 @@
       "window": "full",
       "year_type": "validation",
       "predicted_champion": "OKC",
-      "actual_champion": null,
+      "actual_champion": "OKC",
       "file": "seasons/2025_full.json"
     },
     {
@@ -1069,7 +1069,7 @@
       "window": "modern",
       "year_type": "validation",
       "predicted_champion": "OKC",
-      "actual_champion": null,
+      "actual_champion": "OKC",
       "file": "seasons/2025_modern.json"
     },
     {
@@ -1078,7 +1078,7 @@
       "window": "recent",
       "year_type": "validation",
       "predicted_champion": "OKC",
-      "actual_champion": null,
+      "actual_champion": "OKC",
       "file": "seasons/2025_recent.json"
     },
     {
