@@ -296,6 +296,91 @@ const sections = [
           <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
             The frequency of injuries altering the championship outcome is low, given the generally high availability of players in the playoffs. However, in simulation #45,231 Denver meets Cleveland in the finals and both Jokic and Harden get injured and Cleveland proceeds to sweep Denver, showcasing once again the massive impact of superstar players on the game.
           </p>
+          <div class="rounded-lg border border-court-border overflow-hidden mb-6">
+            <table style="width: 100%; border-collapse: collapse;">
+              <thead>
+                <tr style="background: #253350; border-bottom: 1px solid #2a3a54;">
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Team</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Star BPM</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Availability</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Finals Appearances</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Finals w/ Star Injured</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Win Rate (Healthy)</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Win Rate (Injured)</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Drop</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { abbr: "OKC", bpm: "11.7", avail: "99%", finals: "25,077", injured: "236 (0.9%)",  healthy: "83.1%", injRate: "67.8%", drop: "−15.3pp" },
+                  { abbr: "DEN", bpm: "14.2", avail: "99%", finals: "11,248", injured: "129 (1.1%)",  healthy: "55.0%", injRate: "32.6%", drop: "−22.4pp" },
+                  { abbr: "DET", bpm: "6.3",  avail: "85%", finals: "21,127", injured: "3,246 (15.4%)", healthy: "37.0%", injRate: "28.2%", drop: "−8.8pp"  },
+                ].map((t, i) => {
+                  const espnMap = { GSW: 'gs', NYK: 'ny', SAS: 'sa', NOP: 'no', UTA: 'utah', PHO: 'phx', WAS: 'wsh', BRK: 'bkn', CHO: 'cha' };
+                  const espn = espnMap[t.abbr] ?? t.abbr.toLowerCase();
+                  const logo = `https://a.espncdn.com/i/teamlogos/nba/500/${espn}.png`;
+                  return (
+                    <tr style={`border-bottom: ${i < 2 ? "1px solid #1e2a45" : "none"}; background: ${i % 2 === 0 ? "#182338" : "#1a2640"};`}>
+                      <td style="padding: 8px 14px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                          <img src={logo} alt={t.abbr} style="width: 30px; height: 30px; object-fit: contain; flex-shrink: 0;" />
+                          <span style="color: #e8f0fb; font-size: 11px; font-weight: 600;">{t.abbr}</span>
+                        </div>
+                      </td>
+                      <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">{t.bpm}</td>
+                      <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">{t.avail}</td>
+                      <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">{t.finals}</td>
+                      <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">{t.injured}</td>
+                      <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">{t.healthy}</td>
+                      <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">{t.injRate}</td>
+                      <td style="padding: 8px 14px; color: #ef4444; font-size: 11px; font-family: 'Cascadia Code', monospace; font-weight: 600;">{t.drop}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <div class="rounded-lg border border-court-border overflow-hidden mb-6">
+            <table style="width: 100%; border-collapse: collapse;">
+              <thead>
+                <tr style="background: #253350; border-bottom: 1px solid #2a3a54;">
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Team</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Baseline Odds</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Fully Healthy Odds</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Lift</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { abbr: "OKC", baseline: "41.6%", healthy: "40.5%", lift: "−1.1pp", positive: false },
+                  { abbr: "DET", baseline: "15.1%", healthy: "17.4%", lift: "+2.3pp", positive: true  },
+                  { abbr: "BOS", baseline: "13.7%", healthy: "12.5%", lift: "−1.1pp", positive: false },
+                  { abbr: "SAS", baseline: "10.3%", healthy: "11.5%", lift: "+1.3pp", positive: true  },
+                  { abbr: "DEN", baseline: "12.3%", healthy: "11.1%", lift: "−1.2pp", positive: false },
+                ].map((t, i) => {
+                  const espnMap = { GSW: 'gs', NYK: 'ny', SAS: 'sa', NOP: 'no', UTA: 'utah', PHO: 'phx', WAS: 'wsh', BRK: 'bkn', CHO: 'cha' };
+                  const espn = espnMap[t.abbr] ?? t.abbr.toLowerCase();
+                  const logo = `https://a.espncdn.com/i/teamlogos/nba/500/${espn}.png`;
+                  return (
+                    <tr style={`border-bottom: ${i < 4 ? "1px solid #1e2a45" : "none"}; background: ${i % 2 === 0 ? "#182338" : "#1a2640"};`}>
+                      <td style="padding: 8px 14px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                          <img src={logo} alt={t.abbr} style="width: 30px; height: 30px; object-fit: contain; flex-shrink: 0;" />
+                          <span style="color: #e8f0fb; font-size: 11px; font-weight: 600;">{t.abbr}</span>
+                        </div>
+                      </td>
+                      <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">{t.baseline}</td>
+                      <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">{t.healthy}</td>
+                      <td style={`padding: 8px 14px; font-size: 11px; font-family: 'Cascadia Code', monospace; font-weight: 600; color: ${t.positive ? "#4ade80" : "#ef4444"};`}>{t.lift}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            Injury risk suppresses DET's odds by ~13% relative to their healthy potential, and SAS by ~11%. The "stolen" probability redistributes mainly to OKC, BOS, and DEN, who benefit when DET/SAS draw bad health in a given iteration.
+          </p>
           <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
             Lastly, to all Blazers' fans out there, do not despair (yet)! In exactly 1 out of 50,000 simulations (0.002%) the Blazers end up winning it all. So with a little bit (read: an obscene amount) of luck, you walk away once more an NBA champion after nearly 50 years.
           </p>
