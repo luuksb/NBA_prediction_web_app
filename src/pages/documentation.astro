@@ -126,8 +126,8 @@ const sections = [
             <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
               <thead>
                 <tr style="background: #253350; border-bottom: 1px solid #2a3a54;">
-                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 9px; font-weight: 600; letter-spacing: 0.05em; width: 42%;">Feature</th>
-                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 9px; font-weight: 600; letter-spacing: 0.05em;">Description</th>
+                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 42%;">Feature</th>
+                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Description</th>
                 </tr>
               </thead>
               <tbody>
@@ -181,9 +181,9 @@ const sections = [
             <table style="width: 100%; border-collapse: collapse;">
               <thead>
                 <tr style="background: #253350; border-bottom: 1px solid #2a3a54;">
-                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 9px; font-weight: 600; letter-spacing: 0.05em;"></th>
-                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 9px; font-weight: 600; letter-spacing: 0.05em;">Prediction: High Seed</th>
-                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 9px; font-weight: 600; letter-spacing: 0.05em;">Prediction: Upset</th>
+                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;"></th>
+                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Prediction: High Seed</th>
+                  <th style="padding: 6px 10px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Prediction: Upset</th>
                 </tr>
               </thead>
               <tbody>
@@ -201,7 +201,16 @@ const sections = [
             </table>
           </div>
           <p class="text-sm mt-3" style="color: #c8d8ee; line-height: 1.75;">
-            The strength of this model actually lies in the accuracy of its predicted probabilities compared to actual win rates rather than predicting specific outcomes correctly. I have tested the calibration of the model and found that generally the predicted probabilities match closely to observed win rates (within a 5%-point range for most buckets in the full and modern window). Only the recent window predictions sometimes deviate significantly from actual win rates (possibly due to low number of available observations).
+            The strength of this model actually lies in the accuracy of its predicted probabilities compared to actual win rates rather than predicting specific outcomes correctly. I have tested the calibration of the model and displayed the results in the figure below.
+          </p>
+          <div class="mt-6 mb-2">
+            <img src="/data/reliability_diagram_v2.png" alt="Reliability diagram: mean predicted probability vs actual win rate by training window" style="width: 100%; border-radius: 8px; border: 1px solid #2a3a54;" />
+          </div>
+          <p class="text-sm mt-3" style="color: #c8d8ee; line-height: 1.75;">
+            The reliability diagram plots mean predicted probability against actual win rate within equal-width bins of 0.1, separately for each of the three training windows. A perfectly calibrated model follows the diagonal line exactly, meaning that when the model assigns a 70% win probability to the higher seed, the higher seed should win roughly 70% of the time. The histogram at the bottom uses the same bins and shows where predictions are concentrated: almost all series fall between 0.6 and 0.95, confirming the model consistently favors the higher seed and rarely treats a matchup as a coin flip. The empty bars below 0.5 reflect this too, which is consistent with historical base rates.
+          </p>
+          <p class="text-sm mt-3" style="color: #c8d8ee; line-height: 1.75;">
+            Across all three windows the model tracks the diagonal closely in the 0.65-0.85 range, where the histogram confirms most series are concentrated, indicating good calibration where it matters most. Deviations appear at the extremes: mild underconfidence above 0.85 where the model is slightly too conservative for the clearest mismatches, and noisier estimates below 0.65 where relatively few series fall. The recent window (n=165) shows more erratic behavior at the extremes due to its smaller sample size, while the full and modern windows are the most stable. Importantly, there is no systematic overconfidence across any window, which is arguably the more dangerous failure mode for a prediction model.
           </p>
         </section>
 
@@ -213,6 +222,77 @@ const sections = [
           <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
             As shown in the table below, the highest overall probability to win the 2026 NBA championship the model assigns to OKC (40%), followed by Denver (18%) and the Celtics (13%). The championship probability is calculated by simply dividing the number of simulations in which a specific team wins the NBA title by the total number of simulations. So let's say the Thunder win in 17,500 of the simulations; then their championship probability is 17,500/50,000 = 0.35 (= 35%).
           </p>
+          <div class="rounded-lg border border-court-border overflow-hidden mb-6">
+            <table style="width: 100%; border-collapse: collapse;">
+              <thead>
+                <tr style="background: #253350; border-bottom: 1px solid #2a3a54;">
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Window</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">1st 🏆</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">2nd</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">3rd</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">4th</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">5th</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  {
+                    window: "Full", sub: "1980–2024",
+                    teams: [
+                      { abbr: "OKC", pct: "41.6%", primary: "#007AC1", secondary: "#EF3B24" },
+                      { abbr: "DET", pct: "15.1%", primary: "#C8102E", secondary: "#1D428A" },
+                      { abbr: "BOS", pct: "13.7%", primary: "#007A33", secondary: "#BA9653" },
+                      { abbr: "DEN", pct: "12.3%", primary: "#0E2240", secondary: "#FEC524" },
+                      { abbr: "SAS", pct: "10.3%", primary: "#000000", secondary: "#C4CED4" },
+                    ]
+                  },
+                  {
+                    window: "Modern", sub: "2000–2024",
+                    teams: [
+                      { abbr: "OKC", pct: "42.0%", primary: "#007AC1", secondary: "#EF3B24" },
+                      { abbr: "DEN", pct: "18.3%", primary: "#0E2240", secondary: "#FEC524" },
+                      { abbr: "BOS", pct: "12.5%", primary: "#007A33", secondary: "#BA9653" },
+                      { abbr: "DET", pct: "11.9%", primary: "#C8102E", secondary: "#1D428A" },
+                      { abbr: "SAS", pct: "8.3%",  primary: "#000000", secondary: "#C4CED4" },
+                    ]
+                  },
+                  {
+                    window: "Recent", sub: "2014–2024",
+                    teams: [
+                      { abbr: "OKC", pct: "32.6%", primary: "#007AC1", secondary: "#EF3B24" },
+                      { abbr: "DEN", pct: "32.5%", primary: "#0E2240", secondary: "#FEC524" },
+                      { abbr: "BOS", pct: "11.2%", primary: "#007A33", secondary: "#BA9653" },
+                      { abbr: "DET", pct: "7.0%",  primary: "#C8102E", secondary: "#1D428A" },
+                      { abbr: "LAL", pct: "6.9%",  primary: "#552583", secondary: "#FDB927" },
+                    ]
+                  },
+                ].map((row, i) => (
+                  <tr style={`border-bottom: ${i < 2 ? "1px solid #1e2a45" : "none"}; background: ${i % 2 === 0 ? "#182338" : "#1a2640"};`}>
+                    <td style="padding: 10px 14px; white-space: nowrap;">
+                      <span style="color: #ffffff; font-size: 12px; font-weight: 600;">{row.window}</span>
+                      <span style="color: #8fa3c1; font-size: 10px; display: block;">{row.sub}</span>
+                    </td>
+                    {row.teams.map(t => {
+                      const espnMap = { GSW: 'gs', NYK: 'ny', SAS: 'sa', NOP: 'no', UTA: 'utah', PHO: 'phx', WAS: 'wsh', BRK: 'bkn', CHO: 'cha' };
+                      const espn = espnMap[t.abbr] ?? t.abbr.toLowerCase();
+                      const logo = `https://a.espncdn.com/i/teamlogos/nba/500/${espn}.png`;
+                      return (
+                        <td style="padding: 8px 14px;">
+                          <div style="display: flex; align-items: center; gap: 8px;">
+                            <img src={logo} alt={t.abbr} style="width: 30px; height: 30px; object-fit: contain; flex-shrink: 0;" />
+                            <div>
+                              <span style="color: #e8f0fb; font-size: 11px; font-weight: 600; display: block;">{t.abbr}</span>
+                              <span style="color: #8fa3c1; font-size: 10px;">{t.pct}</span>
+                            </div>
+                          </div>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
             The frequency of injuries altering the championship outcome is low, given the generally high availability of players in the playoffs. However, in simulation #45,231 Denver meets Cleveland in the finals and both Jokic and Harden get injured and Cleveland proceeds to sweep Denver, showcasing once again the massive impact of superstar players on the game.
           </p>
