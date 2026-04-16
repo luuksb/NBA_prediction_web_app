@@ -1,7 +1,7 @@
 {
   "metadata": {
     "season": 2014,
-    "generated_at": "2026-04-16T10:05:24.087137+00:00",
+    "generated_at": "2026-04-16T11:34:59.885976+00:00",
     "n_simulations": 50000,
     "training_window": "recent (2014\u20132024)",
     "n_obs": 165,
@@ -288,11 +288,11 @@
     },
     "Finals": {
       "matchup_id": "Finals",
-      "top_team": "SAS",
+      "top_team": "OKC",
       "bottom_team": "MIA",
-      "top_seed": 1,
+      "top_seed": 2,
       "bottom_seed": 2,
-      "top_win_prob": 0.4069
+      "top_win_prob": 0.5509
     }
   },
   "championship_probs": {

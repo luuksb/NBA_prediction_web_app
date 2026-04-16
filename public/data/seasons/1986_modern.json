@@ -1,7 +1,7 @@
 {
   "metadata": {
     "season": 1986,
-    "generated_at": "2026-04-16T09:57:17.471829+00:00",
+    "generated_at": "2026-04-16T11:32:18.022033+00:00",
     "n_simulations": 50000,
     "training_window": "modern (2000\u20132024)",
     "n_obs": 375,
@@ -288,9 +288,9 @@
     },
     "Finals": {
       "matchup_id": "Finals",
-      "top_team": "WSB",
+      "top_team": "BOS",
       "bottom_team": "SAC",
-      "top_seed": 6,
+      "top_seed": 1,
       "bottom_seed": 7,
       "top_win_prob": 0.5
     }

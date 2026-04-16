@@ -1,7 +1,7 @@
 {
   "metadata": {
     "season": 2008,
-    "generated_at": "2026-04-16T10:03:22.926019+00:00",
+    "generated_at": "2026-04-16T11:34:23.738704+00:00",
     "n_simulations": 50000,
     "training_window": "modern (2000\u20132024)",
     "n_obs": 375,
@@ -289,10 +289,10 @@
     "Finals": {
       "matchup_id": "Finals",
       "top_team": "BOS",
-      "bottom_team": "LAL",
+      "bottom_team": "SAS",
       "top_seed": 1,
-      "bottom_seed": 1,
-      "top_win_prob": 0.8554
+      "bottom_seed": 3,
+      "top_win_prob": 0.663
     }
   },
   "championship_probs": {

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "season": 2004,
-    "generated_at": "2026-04-16T10:01:56.636509+00:00",
+    "generated_at": "2026-04-16T11:33:58.961233+00:00",
     "n_simulations": 50000,
     "training_window": "full (1980\u20132024)",
     "n_obs": 659,
@@ -288,11 +288,11 @@
     },
     "Finals": {
       "matchup_id": "Finals",
-      "top_team": "MIN",
-      "bottom_team": "NJN",
+      "top_team": "IND",
+      "bottom_team": "MIN",
       "top_seed": 1,
-      "bottom_seed": 2,
-      "top_win_prob": 0.8176
+      "bottom_seed": 1,
+      "top_win_prob": 0.562
     }
   },
   "championship_probs": {
