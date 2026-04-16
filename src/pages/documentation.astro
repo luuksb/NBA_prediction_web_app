@@ -133,7 +133,7 @@ const sections = [
               <tbody>
                 <tr style="border-bottom: 1px solid #1e2a45;">
                   <td style="padding: 6px 10px; color: #e8f0fb; font-size: 10px; font-family: 'Cascadia Code', monospace; white-space: nowrap;">delta_sum_bpm_avail</td>
-                  <td style="padding: 6px 10px; color: #8fa3c1; font-size: 11px; line-height: 1.5;">Delta between high and low seed of availability weighted EPM (BPM used as fallback if missing or before year 2000) of top 3 players per team</td>
+                  <td style="padding: 6px 10px; color: #8fa3c1; font-size: 11px; line-height: 1.5;">Delta between high and low seed of availability weighted BPM of top 3 players per team</td>
                 </tr>
                 <tr style="border-bottom: 1px solid #1e2a45;">
                   <td style="padding: 6px 10px; color: #e8f0fb; font-size: 10px; font-family: 'Cascadia Code', monospace; white-space: nowrap;">delta_playoff_series_win</td>
@@ -146,9 +146,6 @@ const sections = [
               </tbody>
             </table>
           </div>
-          <p class="text-sm mt-3" style="color: #8fa3c1; line-height: 1.75; font-size: 11px;">
-            Note: the feature name "sum_bpm_avail" is a legacy name — the metric is actually EPM with BPM as the fallback for years before 2000 or where EPM is unavailable.
-          </p>
         </section>
 
         <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.15); margin-bottom: 40px;" />
