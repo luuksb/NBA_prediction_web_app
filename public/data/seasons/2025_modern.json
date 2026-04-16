@@ -1,7 +1,7 @@
 {
   "metadata": {
     "season": 2025,
-    "generated_at": "2026-04-14T16:23:43.811516+00:00",
+    "generated_at": "2026-04-16T10:04:43.340006+00:00",
     "n_simulations": 50000,
     "training_window": "modern (2000\u20132024)",
     "n_obs": 375,
@@ -26,7 +26,7 @@
       "total_champs": 25
     }
   },
-  "actual_champion": "OKC",
+  "actual_champion": null,
   "teams": {
     "CLE": {
       "name": "Cleveland Cavaliers",
