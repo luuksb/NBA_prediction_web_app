@@ -220,18 +220,18 @@ const sections = [
         <section id="results" class="mb-10">
           <h2 class="font-bold text-white mb-4" style="font-size: 23px;">Results</h2>
           <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
-            As shown in the table below, the highest overall probability to win the 2026 NBA championship the model assigns to OKC (40%), followed by Denver (18%) and the Celtics (13%). The championship probability is calculated by simply dividing the number of simulations in which a specific team wins the NBA title by the total number of simulations. So let's say the Thunder win in 17,500 of the simulations; then their championship probability is 17,500/50,000 = 0.35 (= 35%).
+            As shown in the table below, the highest overall probability to win the 2026 NBA championship the model assigns to OKC in all three windows, followed by Denver or Detroit in second place and the Celtics coming in third in all windows. The championship probability is calculated by simply dividing the number of simulations in which a specific team wins the NBA title by the total number of simulations. So let's say the Thunder win in 17,500 of the simulations; then their championship probability is 17,500/50,000 = 0.35 (= 35%). The table below shows the exact odds for the top 5 per training window. The odds vary significantly across windows, specifically between the recent window and the other windows. In the recent window the Denver Nuggets are assigned a much higher championship probability, due to the intercept being significantly lower, implying that seeding is less important and team strength is valued more. Additionally, as already mentioned, the championship odds do not reflect the head-to-head matchup predictions which are generally less in favor of Detroit, but the fact that the other Western teams have to face each other (and especially OKC) before the finals drops their championship probabilities significantly.
           </p>
           <div class="rounded-lg border border-court-border overflow-hidden mb-6">
-            <table style="width: 100%; border-collapse: collapse;">
+            <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
               <thead>
                 <tr style="background: #253350; border-bottom: 1px solid #2a3a54;">
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Window</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">1st 🏆</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">2nd</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">3rd</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">4th</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">5th</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 16.67%;">Window</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 16.67%;">1st 🏆</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 16.67%;">2nd</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 16.67%;">3rd</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 16.67%;">4th</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 16.67%;">5th</th>
                 </tr>
               </thead>
               <tbody>
@@ -294,20 +294,20 @@ const sections = [
             </table>
           </div>
           <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
-            The frequency of injuries altering the championship outcome is low, given the generally high availability of players in the playoffs. However, in simulation #45,231 Denver meets Cleveland in the finals and both Jokic and Harden get injured and Cleveland proceeds to sweep Denver, showcasing once again the massive impact of superstar players on the game.
+            The frequency of injuries altering the championship outcome is generally low, given the high overall availability of players in the playoffs. However, in several simulations injured stars significantly impact the outcome of the predicted championship probabilities. For example, in exactly 3 out of 50,000 simulations in the modern window, OKC meets the Pistons in the finals and both Shai and Cade get injured and cannot play. The model initially predicted an 84% chance of OKC winning in case both teams were fully healthy, however after both teams lose their stars this drops to a moderate 79% in favor of OKC. Despite the unfavorable odds, Detroit proceeds to upset OKC in all three scenarios (!). A more general overview of injury impact is shown below, where the win rate in the finals of the top three teams is compared when their superstar is fully healthy versus when they are injured. Especially the Nuggets see an enormous drop in win rate (-22.4pp) when Jokic is injured due to his absurd BPM of 14.2. This once again showcases the impact of an absolute superstar. 
           </p>
           <div class="rounded-lg border border-court-border overflow-hidden mb-6">
-            <table style="width: 100%; border-collapse: collapse;">
+            <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
               <thead>
                 <tr style="background: #253350; border-bottom: 1px solid #2a3a54;">
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Team</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Star BPM</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Availability</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Finals Appearances</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Finals w/ Star Injured</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Win Rate (Healthy)</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Win Rate (Injured)</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Drop</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Team</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Star BPM</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Availability</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Finals Appearances</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Finals w/ Star Injured</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Win Rate (Healthy)</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Win Rate (Injured)</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Drop</th>
                 </tr>
               </thead>
               <tbody>
@@ -341,13 +341,13 @@ const sections = [
             </table>
           </div>
           <div class="rounded-lg border border-court-border overflow-hidden mb-6">
-            <table style="width: 100%; border-collapse: collapse;">
+            <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
               <thead>
                 <tr style="background: #253350; border-bottom: 1px solid #2a3a54;">
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Team</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Baseline Odds</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Fully Healthy Odds</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;">Lift</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 25%;">Team</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 25%;">Baseline Odds</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 25%;">Fully Healthy Odds</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 25%;">Lift</th>
                 </tr>
               </thead>
               <tbody>
@@ -379,7 +379,7 @@ const sections = [
             </table>
           </div>
           <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
-            Injury risk suppresses DET's odds by ~13% relative to their healthy potential, and SAS by ~11%. The "stolen" probability redistributes mainly to OKC, BOS, and DEN, who benefit when DET/SAS draw bad health in a given iteration.
+            Note also that Detroit's star availability is only 85%. This is because the star players that do not have historical playoff experience get assigned the league average fallback percentage of 85%. Meaning stars such as Cade Cunningham and Victor Wembanyama will have a relatively low playoff availability percentage. To account for this issue I ran a counterfactual simulation using full health for all players to see the impact. The below table shows the results. As expected the championship odds for the Spurs and Pistons increase, because of their initial low availability, whereas the odds for the other "healthy" teams drop accordingly. 
           </p>
           <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
             Lastly, to all Blazers' fans out there, do not despair (yet)! In exactly 1 out of 50,000 simulations (0.002%) the Blazers end up winning it all. So with a little bit (read: an obscene amount) of luck, you walk away once more an NBA champion after nearly 50 years.
