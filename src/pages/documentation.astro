@@ -304,8 +304,8 @@ const sections = [
                   <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Star BPM</th>
                   <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Availability</th>
                   <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Finals Appearances</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Finals w/ Star Injured</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Win Rate (Healthy)</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 14%;">Finals w/ Star Injured</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 11%;">Win Rate (Healthy)</th>
                   <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Win Rate (Injured)</th>
                   <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Drop</th>
                 </tr>
@@ -340,6 +340,9 @@ const sections = [
               </tbody>
             </table>
           </div>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            Note also that Detroit's star availability is only 85%. This is because the star players that do not have historical playoff experience get assigned the league average fallback percentage of 85%. Meaning stars such as Cade Cunningham and Victor Wembanyama will have a relatively low playoff availability percentage. To account for this issue I ran a counterfactual simulation using full health for all players to see the impact. The below table shows the results. As expected the championship odds for the Spurs and Pistons increase, because of their initial low availability, whereas the odds for the other "healthy" teams drop accordingly. 
+          </p>
           <div class="rounded-lg border border-court-border overflow-hidden mb-6">
             <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
               <thead>
@@ -378,9 +381,6 @@ const sections = [
               </tbody>
             </table>
           </div>
-          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
-            Note also that Detroit's star availability is only 85%. This is because the star players that do not have historical playoff experience get assigned the league average fallback percentage of 85%. Meaning stars such as Cade Cunningham and Victor Wembanyama will have a relatively low playoff availability percentage. To account for this issue I ran a counterfactual simulation using full health for all players to see the impact. The below table shows the results. As expected the championship odds for the Spurs and Pistons increase, because of their initial low availability, whereas the odds for the other "healthy" teams drop accordingly. 
-          </p>
           <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
             Lastly, to all Blazers' fans out there, do not despair (yet)! In exactly 1 out of 50,000 simulations (0.002%) the Blazers end up winning it all. So with a little bit (read: an obscene amount) of luck, you walk away once more an NBA champion after nearly 50 years.
           </p>
