@@ -312,9 +312,9 @@ const sections = [
               </thead>
               <tbody>
                 {[
-                  { abbr: "OKC", bpm: "11.7", avail: "99%", finals: "25,077", injured: "236 (0.9%)",  healthy: "83.1%", injRate: "67.8%", drop: "−15.3pp" },
-                  { abbr: "DEN", bpm: "14.2", avail: "99%", finals: "11,248", injured: "129 (1.1%)",  healthy: "55.0%", injRate: "32.6%", drop: "−22.4pp" },
-                  { abbr: "DET", bpm: "6.3",  avail: "85%", finals: "21,127", injured: "3,246 (15.4%)", healthy: "37.0%", injRate: "28.2%", drop: "−8.8pp"  },
+                  { abbr: "OKC", bpm: "11.7", avail: "99%", finals: "25,321", injured: "250 (1.0%)",    healthy: "83.0%", injRate: "66.8%", drop: "−16.2pp" },
+                  { abbr: "DEN", bpm: "14.2", avail: "99%", finals: "11,437", injured: "94 (0.8%)",    healthy: "55.8%", injRate: "34.0%", drop: "−21.8pp" },
+                  { abbr: "DET", bpm: "6.3",  avail: "85%", finals: "20,975", injured: "3,123 (14.9%)", healthy: "35.9%", injRate: "28.7%", drop: "−7.3pp"  },
                 ].map((t, i) => {
                   const espnMap = { GSW: 'gs', NYK: 'ny', SAS: 'sa', NOP: 'no', UTA: 'utah', PHO: 'phx', WAS: 'wsh', BRK: 'bkn', CHO: 'cha' };
                   const espn = espnMap[t.abbr] ?? t.abbr.toLowerCase();
@@ -355,11 +355,11 @@ const sections = [
               </thead>
               <tbody>
                 {[
-                  { abbr: "OKC", baseline: "41.6%", healthy: "40.5%", lift: "−1.1pp", positive: false },
-                  { abbr: "DET", baseline: "15.1%", healthy: "17.4%", lift: "+2.3pp", positive: true  },
-                  { abbr: "BOS", baseline: "13.7%", healthy: "12.5%", lift: "−1.1pp", positive: false },
-                  { abbr: "SAS", baseline: "10.3%", healthy: "11.5%", lift: "+1.3pp", positive: true  },
-                  { abbr: "DEN", baseline: "12.3%", healthy: "11.1%", lift: "−1.2pp", positive: false },
+                  { abbr: "OKC", baseline: "42.0%", healthy: "41.2%", lift: "−0.8pp", positive: false, note: ""   },
+                  { abbr: "DET", baseline: "14.6%", healthy: "17.2%", lift: "+2.5pp", positive: true,  note: " *" },
+                  { abbr: "BOS", baseline: "13.8%", healthy: "12.5%", lift: "−1.3pp", positive: false, note: ""   },
+                  { abbr: "DEN", baseline: "12.7%", healthy: "11.2%", lift: "−1.6pp", positive: false, note: ""   },
+                  { abbr: "SAS", baseline: "9.9%",  healthy: "11.1%", lift: "+1.2pp", positive: true,  note: " *" },
                 ].map((t, i) => {
                   const espnMap = { GSW: 'gs', NYK: 'ny', SAS: 'sa', NOP: 'no', UTA: 'utah', PHO: 'phx', WAS: 'wsh', BRK: 'bkn', CHO: 'cha' };
                   const espn = espnMap[t.abbr] ?? t.abbr.toLowerCase();
@@ -369,7 +369,7 @@ const sections = [
                       <td style="padding: 8px 14px;">
                         <div style="display: flex; align-items: center; gap: 8px;">
                           <img src={logo} alt={t.abbr} style="width: 30px; height: 30px; object-fit: contain; flex-shrink: 0;" />
-                          <span style="color: #e8f0fb; font-size: 11px; font-weight: 600;">{t.abbr}</span>
+                          <span style="color: #e8f0fb; font-size: 11px; font-weight: 600;">{t.abbr}{t.note}</span>
                         </div>
                       </td>
                       <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">{t.baseline}</td>
