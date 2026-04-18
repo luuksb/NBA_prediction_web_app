@@ -220,7 +220,7 @@ const sections = [
         <section id="results" class="mb-10">
           <h2 class="font-bold text-white mb-4" style="font-size: 23px;">Results</h2>
           <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
-            As shown in the table below, the highest overall probability to win the 2026 NBA championship the model assigns to OKC in all three windows, followed by Denver or Detroit in second place and the Celtics coming in third in all windows. The championship probability is calculated by simply dividing the number of simulations in which a specific team wins the NBA title by the total number of simulations. So let's say the Thunder win in 17,500 of the simulations; then their championship probability is 17,500/50,000 = 0.35 (= 35%). The table below shows the exact odds for the top 5 per training window. The odds vary significantly across windows, specifically between the recent window and the other windows. In the recent window the Denver Nuggets are assigned a much higher championship probability, due to the intercept being significantly lower, implying that seeding is less important and team strength is valued more. Additionally, as already mentioned, the championship odds do not reflect the head-to-head matchup predictions which are generally less in favor of Detroit, but the fact that the other Western teams have to face each other (and especially OKC) before the finals drops their championship probabilities significantly.
+            As shown in the table below, the highest overall probability to win the 2026 NBA championship the model assigns to OKC in the full and modern windows, followed by Denver or Detroit in second place and the Celtics coming in third in all windows. Only in the recent window Denver is actually predicted to win it all. The championship probability is calculated by simply dividing the number of simulations in which a specific team wins the NBA title by the total number of simulations. So let's say the Thunder win in 17,500 of the simulations; then their championship probability is 17,500/50,000 = 0.35 (= 35%). The table below shows the exact odds for the top 5 per training window. The odds vary significantly across windows, specifically between the recent window and the other windows. In the recent window the Denver Nuggets are assigned a much higher championship probability, due to the intercept being significantly lower, implying that seeding is less important and team strength is valued more. Additionally, as already mentioned, the championship odds do not reflect the head-to-head matchup predictions which are generally less in favor of Detroit, but the fact that the other Western teams have to face each other (and especially OKC) before the finals drops their championship probabilities significantly.
           </p>
           <div class="rounded-lg border border-court-border overflow-hidden mb-6">
             <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
@@ -294,7 +294,33 @@ const sections = [
             </table>
           </div>
           <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
-            The frequency of injuries altering the championship outcome is generally low, given the high overall availability of players in the playoffs. However, in several simulations injured stars significantly impact the outcome of the predicted championship probabilities. For example, in exactly 3 out of 50,000 simulations in the modern window, OKC meets the Pistons in the finals and both Shai and Cade get injured and cannot play. The model initially predicted an 84% chance of OKC winning in case both teams were fully healthy, however after both teams lose their stars this drops to a moderate 79% in favor of OKC. Despite the unfavorable odds, Detroit proceeds to upset OKC in all three scenarios (!). A more general overview of injury impact is shown below, where the win rate in the finals of the top three teams is compared when their superstar is fully healthy versus when they are injured. Especially the Nuggets see an enormous drop in win rate (-22.4pp) when Jokic is injured due to his absurd BPM of 14.2. This once again showcases the impact of an absolute superstar. 
+            The frequency of injuries altering the championship outcome is generally low, given the high overall availability of players in the playoffs. However, in several simulations injured stars significantly impact the outcome of the predicted championship probabilities. For example, in exactly 12 out of 50,000 simulations in the modern window, the Nuggets meet the Pistons in the finals and both Jokic and Cade get injured and cannot play. The table below shows the respective model predictions for star injury matchups between Denver and Detroit:
+          </p>
+          <div class="rounded-lg border border-court-border overflow-hidden mb-6">
+            <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+              <thead>
+                <tr style="background: #253350; border-bottom: 1px solid #2a3a54;">
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 25%;"></th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 37.5%;">Cade healthy</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 37.5%;">Cade injured</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #1e2a45; background: #182338;">
+                  <td style="padding: 8px 14px; color: #8fa3c1; font-size: 11px; font-weight: 600;">Jokic healthy</td>
+                  <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">DEN 63.9% / DET 36.1%</td>
+                  <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">DEN 77.7% / DET 22.3%</td>
+                </tr>
+                <tr style="background: #1a2640;">
+                  <td style="padding: 8px 14px; color: #8fa3c1; font-size: 11px; font-weight: 600;">Jokic injured</td>
+                  <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">DEN 27.8% / DET 72.2%</td>
+                  <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">DEN 43.1% / DET 56.9%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
+            Despite the slightly unfavorable odds in the injury scenario, Denver proceeds to defeat Detroit in 6 out of 12 mentioned scenarios. A more general overview of injury impact is shown below, where the win rate in the finals of the top three teams is compared when their superstar is fully healthy versus when they are injured. Especially the Nuggets see an enormous drop in win rate (-30.0pp) when Jokic is injured due to his absurd BPM of 14.2. This once again showcases the insane impact of an absolute superstar.
           </p>
           <div class="rounded-lg border border-court-border overflow-hidden mb-6">
             <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
@@ -341,7 +367,7 @@ const sections = [
             </table>
           </div>
           <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
-            Note also that Detroit's star availability is only 85%. This is because the star players that do not have historical playoff experience get assigned the league average fallback percentage of 85%. Meaning stars such as Cade Cunningham and Victor Wembanyama will have a relatively low playoff availability percentage. To account for this issue I ran a counterfactual simulation using full health for all players to see the impact. The below table shows the results. As expected the championship odds for the Spurs and Pistons increase, because of their initial low availability, whereas the odds for the other "healthy" teams drop accordingly. 
+            Note also that Detroit's star availability is only 85%. This is because the star players that do not have historical playoff experience get assigned the league average fallback percentage of 85%. Meaning stars such as Cade Cunningham and Victor Wembanyama will have a relatively low playoff availability percentage. To account for this issue I ran a simulation using full health for all players to see the impact. The below table shows the results for the modern window. As expected the championship odds for the Spurs and Pistons increase, because of their initial low availability, whereas the odds for the other "healthy" teams drop accordingly.
           </p>
           <div class="rounded-lg border border-court-border overflow-hidden mb-6">
             <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
@@ -382,7 +408,7 @@ const sections = [
             </table>
           </div>
           <p class="text-sm mb-3" style="color: #c8d8ee; line-height: 1.75;">
-            Lastly, to all Blazers' fans out there, do not despair (yet)! In exactly 1 out of 50,000 simulations (0.002%) the Blazers end up winning it all. So with a little bit (read: an obscene amount) of luck, you walk away once more an NBA champion after nearly 50 years.
+            Lastly, to all Phoenix fans out there, do not despair (yet)! In exactly 1 out of 50,000 simulations (0.002%) the Suns end up winning it all (both modern and full window). So with a little bit (read: an obscene amount) of luck, you walk away finally an NBA champion.
           </p>
           <p class="text-sm" style="color: #c8d8ee; line-height: 1.75;">
             Please feel free to reach out in case you have questions or suggestions.
