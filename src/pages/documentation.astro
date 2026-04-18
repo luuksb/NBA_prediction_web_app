@@ -333,14 +333,14 @@ const sections = [
                   <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 14%;">Finals w/ Star Injured</th>
                   <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 11%;">Win Rate (Healthy)</th>
                   <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Win Rate (Injured)</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Drop</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 12.5%;">Change</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { abbr: "OKC", bpm: "11.7", avail: "99%", finals: "25,010", injured: "240 (1.0%)",    healthy: "85.5%", injRate: "62.1%", drop: "−23.4pp" },
-                  { abbr: "DEN", bpm: "14.2", avail: "99%", finals: "14,090", injured: "150 (1.1%)",    healthy: "65.4%", injRate: "35.3%", drop: "−30.0pp" },
-                  { abbr: "DET", bpm: "6.3",  avail: "85%", finals: "19,773", injured: "3,026 (15.3%)", healthy: "30.4%", injRate: "21.8%", drop: "−8.6pp"  },
+                  { abbr: "OKC", bpm: "11.7", avail: "99%", finals: "25,010", injured: "240 (1.0%)",    healthy: "85.5%", injRate: "62.1%", change: "−23.4pp" },
+                  { abbr: "DEN", bpm: "14.2", avail: "99%", finals: "14,090", injured: "150 (1.1%)",    healthy: "65.4%", injRate: "35.3%", change: "−30.0pp" },
+                  { abbr: "DET", bpm: "6.3",  avail: "85%", finals: "19,773", injured: "3,026 (15.3%)", healthy: "30.4%", injRate: "21.8%", change: "−8.6pp"  },
                 ].map((t, i) => {
                   const espnMap = { GSW: 'gs', NYK: 'ny', SAS: 'sa', NOP: 'no', UTA: 'utah', PHO: 'phx', WAS: 'wsh', BRK: 'bkn', CHO: 'cha' };
                   const espn = espnMap[t.abbr] ?? t.abbr.toLowerCase();
@@ -359,7 +359,7 @@ const sections = [
                       <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">{t.injured}</td>
                       <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">{t.healthy}</td>
                       <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">{t.injRate}</td>
-                      <td style="padding: 8px 14px; color: #ef4444; font-size: 11px; font-family: 'Cascadia Code', monospace; font-weight: 600;">{t.drop}</td>
+                      <td style="padding: 8px 14px; color: #ef4444; font-size: 11px; font-family: 'Cascadia Code', monospace; font-weight: 600;">{t.change}</td>
                     </tr>
                   );
                 })}
@@ -376,16 +376,16 @@ const sections = [
                   <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 25%;">Team</th>
                   <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 25%;">Baseline Odds</th>
                   <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 25%;">Fully Healthy Odds</th>
-                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 25%;">Lift</th>
+                  <th style="padding: 10px 14px; text-align: left; color: #8fa3c1; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; width: 25%;">Change</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { abbr: "OKC", baseline: "42.6%", healthy: "41.0%", lift: "−1.6pp", positive: false, note: "" },
-                  { abbr: "DEN", baseline: "18.3%", healthy: "16.2%", lift: "−2.2pp", positive: false, note: "" },
-                  { abbr: "DET", baseline: "11.5%", healthy: "15.0%", lift: "+3.5pp", positive: true,  note: "" },
-                  { abbr: "BOS", baseline: "12.6%", healthy: "11.0%", lift: "−1.6pp", positive: false, note: "" },
-                  { abbr: "SAS", baseline: "8.0%",  healthy: "9.9%",  lift: "+1.9pp", positive: true,  note: "" },
+                  { abbr: "OKC", baseline: "42.6%", healthy: "41.0%", change: "−1.6pp", positive: false, note: "" },
+                  { abbr: "DEN", baseline: "18.3%", healthy: "16.2%", change: "−2.2pp", positive: false, note: "" },
+                  { abbr: "DET", baseline: "11.5%", healthy: "15.0%", change: "+3.5pp", positive: true,  note: "" },
+                  { abbr: "BOS", baseline: "12.6%", healthy: "11.0%", change: "−1.6pp", positive: false, note: "" },
+                  { abbr: "SAS", baseline: "8.0%",  healthy: "9.9%",  change: "+1.9pp", positive: true,  note: "" },
                 ].map((t, i) => {
                   const espnMap = { GSW: 'gs', NYK: 'ny', SAS: 'sa', NOP: 'no', UTA: 'utah', PHO: 'phx', WAS: 'wsh', BRK: 'bkn', CHO: 'cha' };
                   const espn = espnMap[t.abbr] ?? t.abbr.toLowerCase();
@@ -400,7 +400,7 @@ const sections = [
                       </td>
                       <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">{t.baseline}</td>
                       <td style="padding: 8px 14px; color: #e8f0fb; font-size: 11px; font-family: 'Cascadia Code', monospace;">{t.healthy}</td>
-                      <td style={`padding: 8px 14px; font-size: 11px; font-family: 'Cascadia Code', monospace; font-weight: 600; color: ${t.positive ? "#4ade80" : "#ef4444"};`}>{t.lift}</td>
+                      <td style={`padding: 8px 14px; font-size: 11px; font-family: 'Cascadia Code', monospace; font-weight: 600; color: ${t.positive ? "#4ade80" : "#ef4444"};`}>{t.change}</td>
                     </tr>
                   );
                 })}
