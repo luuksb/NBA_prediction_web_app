@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-16T11:36:09.411533+00:00",
+  "generated_at": "2026-04-18T07:47:40.158292+00:00",
   "runs": [
     {
       "run_id": "1986_full",
@@ -1087,7 +1087,7 @@
       "window": "full",
       "year_type": "prediction",
       "predicted_champion": "OKC",
-      "actual_champion": null,
+      "actual_champion": "TBD",
       "file": "seasons/2026_full.json"
     },
     {
@@ -1096,7 +1096,7 @@
       "window": "modern",
       "year_type": "prediction",
       "predicted_champion": "OKC",
-      "actual_champion": null,
+      "actual_champion": "TBD",
       "file": "seasons/2026_modern.json"
     },
     {
@@ -1104,8 +1104,8 @@
       "year": 2026,
       "window": "recent",
       "year_type": "prediction",
-      "predicted_champion": "OKC",
-      "actual_champion": null,
+      "predicted_champion": "DEN",
+      "actual_champion": "TBD",
       "file": "seasons/2026_recent.json"
     }
   ]

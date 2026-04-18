@@ -1,7 +1,7 @@
 {
   "metadata": {
     "season": 2026,
-    "generated_at": "2026-04-16T11:36:05.529516+00:00",
+    "generated_at": "2026-04-18T07:47:36.287572+00:00",
     "n_simulations": 50000,
     "training_window": "full (1980\u20132024)",
     "n_obs": 659,
@@ -140,21 +140,21 @@
       "color_primary": "#0C2340",
       "color_secondary": "#236192"
     },
-    "PHO": {
-      "name": "Phoenix Suns",
-      "abbreviation": "PHO",
-      "conference": "West",
-      "seed": 7,
-      "color_primary": "#1a3a5c",
-      "color_secondary": "#0a1929"
-    },
     "POR": {
       "name": "Portland Trail Blazers",
       "abbreviation": "POR",
       "conference": "West",
-      "seed": 8,
+      "seed": 7,
       "color_primary": "#E03A3E",
       "color_secondary": "#000000"
+    },
+    "PHO": {
+      "name": "Phoenix Suns",
+      "abbreviation": "PHO",
+      "conference": "West",
+      "seed": 8,
+      "color_primary": "#1a3a5c",
+      "color_secondary": "#0a1929"
     }
   },
   "bracket": {
@@ -163,18 +163,18 @@
         {
           "matchup_id": "W_R1_1",
           "top_team": "OKC",
-          "bottom_team": "POR",
+          "bottom_team": "PHO",
           "top_seed": 1,
           "bottom_seed": 8,
-          "top_win_prob": 0.9234
+          "top_win_prob": 0.9408
         },
         {
           "matchup_id": "W_R1_2",
           "top_team": "SAS",
-          "bottom_team": "PHO",
+          "bottom_team": "POR",
           "top_seed": 2,
           "bottom_seed": 7,
-          "top_win_prob": 0.9162
+          "top_win_prob": 0.8937
         },
         {
           "matchup_id": "W_R1_3",
@@ -182,7 +182,7 @@
           "bottom_team": "MIN",
           "top_seed": 3,
           "bottom_seed": 6,
-          "top_win_prob": 0.9212
+          "top_win_prob": 0.9215
         },
         {
           "matchup_id": "W_R1_4",
@@ -190,7 +190,7 @@
           "bottom_team": "HOU",
           "top_seed": 4,
           "bottom_seed": 5,
-          "top_win_prob": 0.793
+          "top_win_prob": 0.7962
         }
       ],
       "R2": [
@@ -200,7 +200,7 @@
           "bottom_team": "LAL",
           "top_seed": 1,
           "bottom_seed": 4,
-          "top_win_prob": 0.7074
+          "top_win_prob": 0.7027
         },
         {
           "matchup_id": "W_R2_2",
@@ -208,7 +208,7 @@
           "bottom_team": "DEN",
           "top_seed": 2,
           "bottom_seed": 3,
-          "top_win_prob": 0.564
+          "top_win_prob": 0.5635
         }
       ],
       "CF": [
@@ -218,7 +218,7 @@
           "bottom_team": "SAS",
           "top_seed": 1,
           "bottom_seed": 2,
-          "top_win_prob": 0.8106
+          "top_win_prob": 0.8118
         }
       ]
     },
@@ -230,7 +230,7 @@
           "bottom_team": "ORL",
           "top_seed": 1,
           "bottom_seed": 8,
-          "top_win_prob": 0.8561
+          "top_win_prob": 0.852
         },
         {
           "matchup_id": "E_R1_2",
@@ -238,7 +238,7 @@
           "bottom_team": "PHI",
           "top_seed": 2,
           "bottom_seed": 7,
-          "top_win_prob": 0.8471
+          "top_win_prob": 0.846
         },
         {
           "matchup_id": "E_R1_3",
@@ -246,7 +246,7 @@
           "bottom_team": "ATL",
           "top_seed": 3,
           "bottom_seed": 6,
-          "top_win_prob": 0.8344
+          "top_win_prob": 0.8354
         },
         {
           "matchup_id": "E_R1_4",
@@ -254,7 +254,7 @@
           "bottom_team": "TOR",
           "top_seed": 4,
           "bottom_seed": 5,
-          "top_win_prob": 0.8709
+          "top_win_prob": 0.8738
         }
       ],
       "R2": [
@@ -264,7 +264,7 @@
           "bottom_team": "CLE",
           "top_seed": 1,
           "bottom_seed": 4,
-          "top_win_prob": 0.7045
+          "top_win_prob": 0.7056
         },
         {
           "matchup_id": "E_R2_2",
@@ -272,7 +272,7 @@
           "bottom_team": "NYK",
           "top_seed": 2,
           "bottom_seed": 3,
-          "top_win_prob": 0.8563
+          "top_win_prob": 0.8523
         }
       ],
       "CF": [
@@ -282,7 +282,7 @@
           "bottom_team": "BOS",
           "top_seed": 1,
           "bottom_seed": 2,
-          "top_win_prob": 0.6487
+          "top_win_prob": 0.6495
         }
       ]
     },
@@ -292,30 +292,30 @@
       "bottom_team": "DET",
       "top_seed": 1,
       "bottom_seed": 1,
-      "top_win_prob": 0.8589
+      "top_win_prob": 0.8631
     }
   },
   "championship_probs": {
-    "OKC": 0.41596,
-    "DET": 0.15054,
-    "BOS": 0.13676,
-    "DEN": 0.12304,
-    "SAS": 0.1027,
-    "LAL": 0.03862,
-    "CLE": 0.0154,
-    "NYK": 0.01258,
-    "PHI": 0.00158,
-    "HOU": 0.00134,
-    "MIN": 0.00048,
-    "TOR": 0.0004,
-    "ATL": 0.00036,
-    "ORL": 0.00018,
-    "POR": 6e-05,
-    "PHO": 0.0
+    "OKC": 0.41968,
+    "DET": 0.14626,
+    "BOS": 0.13762,
+    "DEN": 0.12722,
+    "SAS": 0.09944,
+    "LAL": 0.03698,
+    "CLE": 0.01406,
+    "NYK": 0.01376,
+    "HOU": 0.00166,
+    "PHI": 0.00152,
+    "MIN": 0.00052,
+    "ATL": 0.00046,
+    "TOR": 0.00044,
+    "ORL": 0.00026,
+    "POR": 0.0001,
+    "PHO": 2e-05
   },
   "injury_impact": {
-    "pct_finals_with_injury": 0.2354,
-    "healthy_finalist_win_rate": 0.6619,
-    "pct_champ_with_injury": 0.0884
+    "pct_finals_with_injury": 0.2332,
+    "healthy_finalist_win_rate": 0.6645,
+    "pct_champ_with_injury": 0.0874
   }
 }
