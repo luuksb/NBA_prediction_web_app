@@ -312,9 +312,9 @@ const sections = [
               </thead>
               <tbody>
                 {[
-                  { abbr: "OKC", bpm: "11.7", avail: "99%", finals: "25,321", injured: "250 (1.0%)",    healthy: "83.0%", injRate: "66.8%", drop: "−16.2pp" },
-                  { abbr: "DEN", bpm: "14.2", avail: "99%", finals: "11,437", injured: "94 (0.8%)",    healthy: "55.8%", injRate: "34.0%", drop: "−21.8pp" },
-                  { abbr: "DET", bpm: "6.3",  avail: "85%", finals: "20,975", injured: "3,123 (14.9%)", healthy: "35.9%", injRate: "28.7%", drop: "−7.3pp"  },
+                  { abbr: "OKC", bpm: "11.7", avail: "99%", finals: "25,010", injured: "240 (1.0%)",    healthy: "85.5%", injRate: "62.1%", drop: "−23.4pp" },
+                  { abbr: "DEN", bpm: "14.2", avail: "99%", finals: "14,090", injured: "150 (1.1%)",    healthy: "65.4%", injRate: "35.3%", drop: "−30.0pp" },
+                  { abbr: "DET", bpm: "6.3",  avail: "85%", finals: "19,773", injured: "3,026 (15.3%)", healthy: "30.4%", injRate: "21.8%", drop: "−8.6pp"  },
                 ].map((t, i) => {
                   const espnMap = { GSW: 'gs', NYK: 'ny', SAS: 'sa', NOP: 'no', UTA: 'utah', PHO: 'phx', WAS: 'wsh', BRK: 'bkn', CHO: 'cha' };
                   const espn = espnMap[t.abbr] ?? t.abbr.toLowerCase();
@@ -355,11 +355,11 @@ const sections = [
               </thead>
               <tbody>
                 {[
-                  { abbr: "OKC", baseline: "42.0%", healthy: "41.2%", lift: "−0.8pp", positive: false, note: ""   },
-                  { abbr: "DET", baseline: "14.6%", healthy: "17.2%", lift: "+2.5pp", positive: true,  note: " *" },
-                  { abbr: "BOS", baseline: "13.8%", healthy: "12.5%", lift: "−1.3pp", positive: false, note: ""   },
-                  { abbr: "DEN", baseline: "12.7%", healthy: "11.2%", lift: "−1.6pp", positive: false, note: ""   },
-                  { abbr: "SAS", baseline: "9.9%",  healthy: "11.1%", lift: "+1.2pp", positive: true,  note: " *" },
+                  { abbr: "OKC", baseline: "42.6%", healthy: "41.0%", lift: "−1.6pp", positive: false, note: "" },
+                  { abbr: "DEN", baseline: "18.3%", healthy: "16.2%", lift: "−2.2pp", positive: false, note: "" },
+                  { abbr: "DET", baseline: "11.5%", healthy: "15.0%", lift: "+3.5pp", positive: true,  note: "" },
+                  { abbr: "BOS", baseline: "12.6%", healthy: "11.0%", lift: "−1.6pp", positive: false, note: "" },
+                  { abbr: "SAS", baseline: "8.0%",  healthy: "9.9%",  lift: "+1.9pp", positive: true,  note: "" },
                 ].map((t, i) => {
                   const espnMap = { GSW: 'gs', NYK: 'ny', SAS: 'sa', NOP: 'no', UTA: 'utah', PHO: 'phx', WAS: 'wsh', BRK: 'bkn', CHO: 'cha' };
                   const espn = espnMap[t.abbr] ?? t.abbr.toLowerCase();
